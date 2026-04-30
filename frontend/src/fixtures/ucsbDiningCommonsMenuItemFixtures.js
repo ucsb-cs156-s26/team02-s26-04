@@ -14,7 +14,7 @@ const ucsbDiningCommonsMenuItemFixtures = {
     },
     {
       id: 2,
-      diningCommonsCode: "DLG",
+      diningCommonsCode: "Carillo",
       name: "Tri Tip Roast",
       station: "Entree",
     },
