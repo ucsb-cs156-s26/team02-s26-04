@@ -1,6 +1,6 @@
 const ArticlesFixtures = {
   oneDate: {
-    id: 1   ,
+    id: 1,
     title: "Article 1",
     url: "dailynexus.com/article1",
     explanation: "This is the first article",
@@ -9,12 +9,12 @@ const ArticlesFixtures = {
   },
   threeDates: [
     {
-    id: 1   ,
-    title: "Article 1",
-    url: "dailynexus.com/article1",
-    explanation: "This is the first article",
-    email: "user@example.com",
-    dateAdded: "2022-01-02T12:00:00",
+      id: 1,
+      title: "Article 1",
+      url: "dailynexus.com/article1",
+      explanation: "This is the first article",
+      email: "user@example.com",
+      dateAdded: "2022-01-02T12:00:00",
     },
     {
       id: 2,
