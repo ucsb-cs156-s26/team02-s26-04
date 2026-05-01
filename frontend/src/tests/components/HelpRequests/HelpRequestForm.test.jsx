@@ -28,6 +28,17 @@ describe("HelpRequestForm tests", () => {
   ];
   const testId = "HelpRequestForm";
 
+  const fieldTestIdSuffixes = [
+    "requesterEmail",
+    "teamId",
+    "tableOrBreakoutRoom",
+    "requestTime",
+    "explanation",
+    "solved",
+    "submit",
+    "cancel",
+  ];
+
   test("renders correctly with no initialContents", async () => {
     render(
       <QueryClientProvider client={queryClient}>
@@ -43,15 +54,22 @@ describe("HelpRequestForm tests", () => {
       const header = screen.getByText(headerText);
       expect(header).toBeInTheDocument();
     });
+
+    fieldTestIdSuffixes.forEach((suffix) => {
+      expect(screen.getByTestId(`${testId}-${suffix}`)).toBeInTheDocument();
+    });
   });
 
   test("renders correctly when passing in initialContents", async () => {
+    const initialContents = {
+      ...helpRequestFixtures.oneHelpRequest,
+      requestTime: "2026-04-29T12:00:00.000Z",
+    };
+
     render(
       <QueryClientProvider client={queryClient}>
         <Router>
-          <HelpRequestForm
-            initialContents={helpRequestFixtures.oneHelpRequest}
-          />
+          <HelpRequestForm initialContents={initialContents} />
         </Router>
       </QueryClientProvider>,
     );
@@ -65,6 +83,29 @@ describe("HelpRequestForm tests", () => {
 
     expect(await screen.findByTestId(`${testId}-id`)).toBeInTheDocument();
     expect(screen.getByText(`Id`)).toBeInTheDocument();
+
+    fieldTestIdSuffixes.forEach((suffix) => {
+      expect(screen.getByTestId(`${testId}-${suffix}`)).toBeInTheDocument();
+    });
+
+    expect(screen.getByTestId(`${testId}-id`)).toHaveValue("1");
+    expect(screen.getByTestId(`${testId}-requesterEmail`)).toHaveValue(
+      initialContents.requesterEmail,
+    );
+    expect(screen.getByTestId(`${testId}-teamId`)).toHaveValue(
+      initialContents.teamId,
+    );
+    expect(screen.getByTestId(`${testId}-tableOrBreakoutRoom`)).toHaveValue(
+      initialContents.tableOrBreakoutRoom,
+    );
+    expect(screen.getByTestId(`${testId}-requestTime`)).toHaveValue(
+      "2026-04-29T12:00",
+    );
+    expect(screen.getByTestId(`${testId}-requestTime`).value).not.toContain("Z");
+    expect(screen.getByTestId(`${testId}-explanation`)).toHaveValue(
+      initialContents.explanation,
+    );
+    expect(screen.getByTestId(`${testId}-solved`)).not.toBeChecked();
   });
 
   test("that navigate(-1) is called when Cancel is clicked", async () => {
@@ -104,5 +145,40 @@ describe("HelpRequestForm tests", () => {
     expect(screen.getByText(/Request Time is required/)).toBeInTheDocument();
     expect(screen.getByText(/Explanation is required/)).toBeInTheDocument();
     expect(screen.getByText(/Solved is required/)).toBeInTheDocument();
+  });
+
+  test("requester email max length validation", async () => {
+    render(
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <HelpRequestForm />
+        </Router>
+      </QueryClientProvider>,
+    );
+
+    expect(await screen.findByTestId(`${testId}-requesterEmail`)).toBeInTheDocument();
+
+    fireEvent.change(screen.getByTestId(`${testId}-requesterEmail`), {
+      target: { value: "a".repeat(31) },
+    });
+    fireEvent.change(screen.getByTestId(`${testId}-teamId`), {
+      target: { value: "team1" },
+    });
+    fireEvent.change(screen.getByTestId(`${testId}-tableOrBreakoutRoom`), {
+      target: { value: "table" },
+    });
+    fireEvent.change(screen.getByTestId(`${testId}-requestTime`), {
+      target: { value: "2026-04-29T12:00" },
+    });
+    fireEvent.change(screen.getByTestId(`${testId}-explanation`), {
+      target: { value: "Need help" },
+    });
+    fireEvent.click(screen.getByTestId(`${testId}-solved`));
+
+    fireEvent.click(screen.getByTestId(`${testId}-submit`));
+
+    expect(
+      await screen.findByText("Max length 30 characters"),
+    ).toBeInTheDocument();
   });
 });
