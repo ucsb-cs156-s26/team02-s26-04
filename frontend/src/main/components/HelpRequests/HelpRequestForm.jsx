@@ -101,6 +101,7 @@ function HelpRequestForm({
           isInvalid={Boolean(errors.requestTime)}
           {...register("requestTime", {
             required: "Request Time is required.",
+            pattern: isodate_regex,
           })}
         />
         <Form.Control.Feedback type="invalid">
