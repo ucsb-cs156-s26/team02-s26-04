@@ -7,17 +7,18 @@ function HelpRequestForm({
   submitAction,
   buttonLabel = "Create",
 }) {
-
-  const defaultValues = initialContents ? {
-    ...initialContents,
-    requestTime: initialContents.requestTime.replace("Z", "")
-  } : {};
+  const defaultValues = initialContents
+    ? {
+        ...initialContents,
+        requestTime: initialContents.requestTime.replace("Z", ""),
+      }
+    : {};
   // Stryker disable all
   const {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm ({defaultValues})
+  } = useForm({ defaultValues });
   // Stryker restore all
 
   const navigate = useNavigate();
@@ -27,7 +28,6 @@ function HelpRequestForm({
   // Stryker disable Regex
   const isodate_regex =
     /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
-  
 
   // Stryker restore Regex
 
@@ -84,7 +84,9 @@ function HelpRequestForm({
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label htmlFor="tableOrBreakoutRoom">Table or Breakout Room</Form.Label>
+        <Form.Label htmlFor="tableOrBreakoutRoom">
+          Table or Breakout Room
+        </Form.Label>
         <Form.Control
           data-testid={testIdPrefix + "-tableOrBreakoutRoom"}
           id="tableOrBreakoutRoom"
@@ -100,21 +102,23 @@ function HelpRequestForm({
       </Form.Group>
 
       <Form.Group className="mb-3">
-            <Form.Label htmlFor="localDateTime">Request Time (iso format)</Form.Label>
-            <Form.Control
-              data-testid={testIdPrefix + "-requestTime"}
-              id="requestTime"
-              type="datetime-local"
-              isInvalid={Boolean(errors.requestTime)}
-              {...register("requestTime", {
-                required: true,
-                pattern: isodate_regex,
-              })}
-            />
-            <Form.Control.Feedback type="invalid">
-              {errors.requestTime && "Request Time is required. "}
-            </Form.Control.Feedback>
-          </Form.Group>
+        <Form.Label htmlFor="localDateTime">
+          Request Time (iso format)
+        </Form.Label>
+        <Form.Control
+          data-testid={testIdPrefix + "-requestTime"}
+          id="requestTime"
+          type="datetime-local"
+          isInvalid={Boolean(errors.requestTime)}
+          {...register("requestTime", {
+            required: true,
+            pattern: isodate_regex,
+          })}
+        />
+        <Form.Control.Feedback type="invalid">
+          {errors.requestTime && "Request Time is required. "}
+        </Form.Control.Feedback>
+      </Form.Group>
 
       <Form.Group className="mb-3">
         <Form.Label htmlFor="explanation">Explanation</Form.Label>
