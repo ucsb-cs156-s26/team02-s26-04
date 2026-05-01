@@ -79,10 +79,6 @@ function ArticlesForm({
               isInvalid={Boolean(errors.url)}
               {...register("url", {
                 required: "URL is required.",
-                pattern: {
-                  value: URL_regex,
-                  message: "Invalid URL format.",
-                },
               })}
             />
             <Form.Control.Feedback type="invalid">
@@ -136,11 +132,11 @@ function ArticlesForm({
       <Row>
         <Col>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="dateAdded">dateAdded</Form.Label>
+            <Form.Label htmlFor="dateAdded">Date (iso format)</Form.Label>
             <Form.Control
               data-testid="ArticlesForm-dateAdded"
               id="dateAdded"
-              type="text"
+              type="datetime-local"
               isInvalid={Boolean(errors.dateAdded)}
               {...register("dateAdded", {
                 required: true,

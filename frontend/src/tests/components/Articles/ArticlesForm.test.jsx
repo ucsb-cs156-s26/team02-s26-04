@@ -44,12 +44,10 @@ describe("ArticlesForm tests", () => {
     );
     await screen.findByTestId("ArticlesForm-email");
     const emailField = screen.getByTestId("ArticlesForm-email");
-    const urlField = screen.getByTestId("ArticlesForm-url");
     const dateAddedField = screen.getByTestId("ArticlesForm-dateAdded");
     const submitButton = screen.getByTestId("ArticlesForm-submit");
 
     fireEvent.change(emailField, { target: { value: "bad-email" } });
-    fireEvent.change(urlField, { target: { value: "bad-url" } });
     fireEvent.change(dateAddedField, { target: { value: "bad-date" } });
     fireEvent.click(submitButton);
 
@@ -103,9 +101,6 @@ describe("ArticlesForm tests", () => {
 
     await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
 
-    expect(
-      screen.queryByText(/URL must be in the format https:\/\/.../),
-    ).not.toBeInTheDocument();
     expect(
       screen.queryByText(/Email must be in the format user@email.com/),
     ).not.toBeInTheDocument();
