@@ -12,7 +12,10 @@ function UCSBDateForm({
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm({ defaultValues: initialContents || {} });
+  } = useForm({ defaultValues: {
+    ...initialContents,
+    helpRequestTime: initialContents.helpRequestTime.replace("Z", "")
+  } || {}})
   // Stryker restore all
 
   const navigate = useNavigate();
