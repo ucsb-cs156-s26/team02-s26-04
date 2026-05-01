@@ -101,7 +101,9 @@ describe("HelpRequestForm tests", () => {
     expect(screen.getByTestId(`${testId}-requestTime`)).toHaveValue(
       "2026-04-29T12:00",
     );
-    expect(screen.getByTestId(`${testId}-requestTime`).value).not.toContain("Z");
+    expect(screen.getByTestId(`${testId}-requestTime`).value).not.toContain(
+      "Z",
+    );
     expect(screen.getByTestId(`${testId}-explanation`)).toHaveValue(
       initialContents.explanation,
     );
@@ -156,7 +158,9 @@ describe("HelpRequestForm tests", () => {
       </QueryClientProvider>,
     );
 
-    expect(await screen.findByTestId(`${testId}-requesterEmail`)).toBeInTheDocument();
+    expect(
+      await screen.findByTestId(`${testId}-requesterEmail`),
+    ).toBeInTheDocument();
 
     fireEvent.change(screen.getByTestId(`${testId}-requesterEmail`), {
       target: { value: "a".repeat(31) },
