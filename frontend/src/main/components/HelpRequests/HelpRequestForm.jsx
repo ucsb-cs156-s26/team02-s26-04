@@ -7,12 +7,17 @@ function HelpRequestForm({
   submitAction,
   buttonLabel = "Create",
 }) {
+
+  const defaultValues = initialContents ? {
+    ...initialContents,
+    requestTime: initialContents.requestTime.replace("Z", "")
+  } : {};
   // Stryker disable all
   const {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm({ defaultValues: initialContents || {} });
+  } = useForm ({defaultValues})
   // Stryker restore all
 
   const navigate = useNavigate();
