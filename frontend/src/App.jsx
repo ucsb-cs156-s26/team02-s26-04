@@ -15,6 +15,10 @@ import UCSBOrganizationIndexPage from "main/pages/UCSBOrganization/UCSBOrganizat
 import UCSBOrganizationCreatePage from "main/pages/UCSBOrganization/UCSBOrganizationCreatePage";
 import UCSBOrganizationEditPage from "main/pages/UCSBOrganization/UCSBOrganizationEditPage";
 
+import HelpRequestsIndexPage from "main/pages/HelpRequests/HelpRequestsIndexPage";
+import HelpRequestsCreatePage from "main/pages/HelpRequests/HelpRequestsCreatePage";
+import HelpRequestsEditPage from "main/pages/HelpRequests/HelpRequestsEditPage";
+
 import PlaceholderIndexPage from "main/pages/Placeholder/PlaceholderIndexPage";
 import PlaceholderCreatePage from "main/pages/Placeholder/PlaceholderCreatePage";
 import PlaceholderEditPage from "main/pages/Placeholder/PlaceholderEditPage";
@@ -50,6 +54,25 @@ function App() {
             exact
             path="/ucsbdates/create"
             element={<UCSBDatesCreatePage />}
+          />
+        </>
+      )}
+      {hasRole(currentUser, "ROLE_USER") && (
+        <>
+          <Route exact path="/helprequests" element={<HelpRequestsIndexPage />} />
+        </>
+      )}
+      {hasRole(currentUser, "ROLE_ADMIN") && (
+        <>
+          <Route
+            exact
+            path="/helprequests/edit/:id"
+            element={<HelpRequestsEditPage />}
+          />
+          <Route
+            exact
+            path="/helprequests/create"
+            element={<HelpRequestsCreatePage />}
           />
         </>
       )}
