@@ -22,6 +22,8 @@ function HelpRequestForm({
   // Stryker disable Regex
   const isodate_regex =
     /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
+  
+
   // Stryker restore Regex
 
   return (
@@ -93,21 +95,21 @@ function HelpRequestForm({
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label htmlFor="requestTime">Request Time</Form.Label>
-        <Form.Control
-          data-testid={testIdPrefix + "-requestTime"}
-          id="requestTime"
-          type="datetime-local"
-          isInvalid={Boolean(errors.requestTime)}
-          {...register("requestTime", {
-            required: "Request Time is required.",
-            pattern: isodate_regex,
-          })}
-        />
-        <Form.Control.Feedback type="invalid">
-          {errors.requestTime?.message}
-        </Form.Control.Feedback>
-      </Form.Group>
+            <Form.Label htmlFor="localDateTime">Request Time (iso format)</Form.Label>
+            <Form.Control
+              data-testid={testIdPrefix + "-requestTime"}
+              id="requestTime"
+              type="datetime-local"
+              isInvalid={Boolean(errors.requestTime)}
+              {...register("requestTime", {
+                required: true,
+                pattern: isodate_regex,
+              })}
+            />
+            <Form.Control.Feedback type="invalid">
+              {errors.requestTime && "Request Time is required. "}
+            </Form.Control.Feedback>
+          </Form.Group>
 
       <Form.Group className="mb-3">
         <Form.Label htmlFor="explanation">Explanation</Form.Label>
