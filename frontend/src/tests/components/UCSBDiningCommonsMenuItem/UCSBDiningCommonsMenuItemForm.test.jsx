@@ -31,7 +31,9 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
     );
 
     expect(await screen.findByText(/Create/)).toBeInTheDocument();
-
+    expect(screen.getByTestId(`${testId}-diningCommonsCode`)).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-station`)).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-submit`)).toBeInTheDocument();
     expectedHeaders.forEach((headerText) => {
       const header = screen.getByText(headerText);
       expect(header).toBeInTheDocument();
@@ -42,7 +44,9 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <Router>
-          <UCSBDiningCommonsMenuItemForm initialContents={ucsbDiningCommonsMenuItemFixtures.oneMenuItem} />
+          <UCSBDiningCommonsMenuItemForm
+            initialContents={ucsbDiningCommonsMenuItemFixtures.oneMenuItem}
+          />
         </Router>
       </QueryClientProvider>,
     );
@@ -56,6 +60,9 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
 
     expect(await screen.findByTestId(`${testId}-id`)).toBeInTheDocument();
     expect(screen.getByText(`Id`)).toBeInTheDocument();
+    expect(screen.getByDisplayValue("Ortega")).toBeInTheDocument();
+    expect(screen.getByDisplayValue("Pesto Pasta")).toBeInTheDocument();
+    expect(screen.getByDisplayValue("Entree")).toBeInTheDocument();
   });
 
   test("that navigate(-1) is called when Cancel is clicked", async () => {
@@ -88,8 +95,10 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
     fireEvent.click(submitButton);
 
     await screen.findByText(/Name is required/);
-    expect(screen.getByText(/Dining Commons Code is required/)).toBeInTheDocument();
-
+    expect(
+      screen.getByText(/Dining Commons Code is required/),
+    ).toBeInTheDocument();
+    await screen.findByText(/Station is required/);   
     const nameInput = screen.getByTestId(`${testId}-name`);
     fireEvent.change(nameInput, { target: { value: "a".repeat(256) } });
     fireEvent.click(submitButton);
