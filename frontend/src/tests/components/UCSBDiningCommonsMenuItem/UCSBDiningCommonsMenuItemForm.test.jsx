@@ -31,7 +31,9 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
     );
 
     expect(await screen.findByText(/Create/)).toBeInTheDocument();
-    expect(screen.getByTestId(`${testId}-diningCommonsCode`)).toBeInTheDocument();
+    expect(
+      screen.getByTestId(`${testId}-diningCommonsCode`),
+    ).toBeInTheDocument();
     expect(screen.getByTestId(`${testId}-station`)).toBeInTheDocument();
     expect(screen.getByTestId(`${testId}-submit`)).toBeInTheDocument();
     expectedHeaders.forEach((headerText) => {
@@ -98,7 +100,7 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
     expect(
       screen.getByText(/Dining Commons Code is required/),
     ).toBeInTheDocument();
-    await screen.findByText(/Station is required/);   
+    await screen.findByText(/Station is required/);
     const nameInput = screen.getByTestId(`${testId}-name`);
     fireEvent.change(nameInput, { target: { value: "a".repeat(256) } });
     fireEvent.click(submitButton);
