@@ -228,8 +228,11 @@
 <a name='L163'></a><a href='#L163'>163</a>
 <a name='L164'></a><a href='#L164'>164</a>
 <a name='L165'></a><a href='#L165'>165</a>
-<a name='L166'></a><a href='#L166'>166</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L166'></a><a href='#L166'>166</a>
+<a name='L167'></a><a href='#L167'>167</a>
+<a name='L168'></a><a href='#L168'>168</a>
+<a name='L169'></a><a href='#L169'>169</a>
+<a name='L170'></a><a href='#L170'>170</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -247,21 +250,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -402,17 +410,18 @@ function HelpRequestForm({
   submitAction,
   buttonLabel = "Create",
 }) {
-&nbsp;
-  const defaultValues = initialContents ? {
-    ...initialContents,
-    requestTime: initialContents.requestTime.replace("Z", "")
-  } : {};
+  const defaultValues = initialContents
+    ? {
+        ...initialContents,
+        requestTime: initialContents.requestTime.replace("Z", ""),
+      }
+    : {};
   // Stryker disable all
   const {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm ({defaultValues})
+  } = useForm({ defaultValues });
   // Stryker restore all
 &nbsp;
   const navigate = useNavigate();
@@ -422,7 +431,6 @@ function HelpRequestForm({
   // Stryker disable Regex
   const isodate_regex =
     /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
-  
 &nbsp;
   // Stryker restore Regex
 &nbsp;
@@ -479,7 +487,9 @@ function HelpRequestForm({
       &lt;/Form.Group&gt;
 &nbsp;
       &lt;Form.Group className="mb-3"&gt;
-        &lt;Form.Label htmlFor="tableOrBreakoutRoom"&gt;Table or Breakout Room&lt;/Form.Label&gt;
+        &lt;Form.Label htmlFor="tableOrBreakoutRoom"&gt;
+          Table or Breakout Room
+        &lt;/Form.Label&gt;
         &lt;Form.Control
           data-testid={testIdPrefix + "-tableOrBreakoutRoom"}
           id="tableOrBreakoutRoom"
@@ -495,21 +505,23 @@ function HelpRequestForm({
       &lt;/Form.Group&gt;
 &nbsp;
       &lt;Form.Group className="mb-3"&gt;
-            &lt;Form.Label htmlFor="localDateTime"&gt;Request Time (iso format)&lt;/Form.Label&gt;
-            &lt;Form.Control
-              data-testid={testIdPrefix + "-requestTime"}
-              id="requestTime"
-              type="datetime-local"
-              isInvalid={Boolean(errors.requestTime)}
-              {...register("requestTime", {
-                required: true,
-                pattern: isodate_regex,
-              })}
-            /&gt;
-            &lt;Form.Control.Feedback type="invalid"&gt;
-              {errors.requestTime &amp;&amp; "Request Time is required. "}
-            &lt;/Form.Control.Feedback&gt;
-          &lt;/Form.Group&gt;
+        &lt;Form.Label htmlFor="localDateTime"&gt;
+          Request Time (iso format)
+        &lt;/Form.Label&gt;
+        &lt;Form.Control
+          data-testid={testIdPrefix + "-requestTime"}
+          id="requestTime"
+          type="datetime-local"
+          isInvalid={Boolean(errors.requestTime)}
+          {...register("requestTime", {
+            required: true,
+            pattern: isodate_regex,
+          })}
+        /&gt;
+        &lt;Form.Control.Feedback type="invalid"&gt;
+          {errors.requestTime &amp;&amp; "Request Time is required. "}
+        &lt;/Form.Control.Feedback&gt;
+      &lt;/Form.Group&gt;
 &nbsp;
       &lt;Form.Group className="mb-3"&gt;
         &lt;Form.Label htmlFor="explanation"&gt;Explanation&lt;/Form.Label&gt;
@@ -565,7 +577,7 @@ export default HelpRequestForm;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-05-01T01:05:00.129Z
+                at 2026-05-01T05:09:51.332Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
