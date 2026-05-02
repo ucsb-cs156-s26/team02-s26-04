@@ -61,9 +61,7 @@ describe("RecommendationRequestForm tests", () => {
     fireEvent.change(dateRequestedField, { target: { value: "bad-input" } });
     fireEvent.click(submitButton);
 
-    await screen.findByText(
-      /Requester Email must be a valid email address./,
-    );
+    await screen.findByText(/Requester Email must be a valid email address./);
     expect(
       screen.getByText(/Requester Email must be a valid email address./),
     ).toBeInTheDocument();
