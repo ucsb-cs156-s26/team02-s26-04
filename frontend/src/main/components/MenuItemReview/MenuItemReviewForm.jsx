@@ -26,7 +26,7 @@ function MenuItemReviewForm({
   // Stryker restore Regex
 
   // Stryker disable next-line all
-  const yyyyq_regex = /((19)|(20))\d{2}[1-4]/i; // Accepts from 1900-2099 followed by 1-4.  Close enough.
+ // const yyyyq_regex = /((19)|(20))\d{2}[1-4]/i; // Accepts from 1900-2099 followed by 1-4.  Close enough.
 
   return (
     <Form onSubmit={handleSubmit(submitAction)}>
@@ -47,7 +47,7 @@ function MenuItemReviewForm({
           </Col>
         )}
 
-        <Col> 
+        <Col>
           <Form.Group className="mb-3">
             <Form.Label htmlFor="itemId">Item Id</Form.Label>
             <Form.Control
@@ -64,9 +64,9 @@ function MenuItemReviewForm({
               {errors.itemId?.message}
             </Form.Control.Feedback>
           </Form.Group>
-        </Col> 
+        </Col>
       </Row>
-      
+
       <Row>
         <Col>
           <Form.Group className="mb-3">

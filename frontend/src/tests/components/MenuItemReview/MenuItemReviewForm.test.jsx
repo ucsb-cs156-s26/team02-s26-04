@@ -3,7 +3,6 @@ import MenuItemReviewForm from "main/components/MenuItemReview/MenuItemReviewFor
 import { menuItemReviewFixtures } from "fixtures/menuItemReviewFixtures";
 import { BrowserRouter as Router } from "react-router";
 import { expect } from "vitest";
-import MenuItemReviewForm from "main/components/MenuItemReview/MenuItemReviewForm";
 
 const mockedNavigate = vi.fn();
 vi.mock("react-router", async () => {
@@ -29,7 +28,9 @@ describe("MenuItemReviewForm tests", () => {
   test("renders correctly when passing in a MenuItemReview", async () => {
     render(
       <Router>
-        <MenuItemReviewForm initialContents={menuItemReviewFixtures.oneReview} />
+        <MenuItemReviewForm
+          initialContents={menuItemReviewFixtures.oneReview}
+        />
       </Router>,
     );
     await screen.findByTestId("MenuItemReviewForm-id");
@@ -120,7 +121,9 @@ describe("MenuItemReviewForm tests", () => {
     expect(
       screen.queryByText(/Date Reviewed is required./),
     ).not.toBeInTheDocument();
-    expect(screen.queryByText(/Comments are required./)).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/Comments are required./),
+    ).not.toBeInTheDocument();
   });
 
   test("that navigate(-1) is called when Cancel is clicked", async () => {

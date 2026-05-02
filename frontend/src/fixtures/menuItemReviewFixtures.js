@@ -33,7 +33,7 @@ const menuItemReviewFixtures = {
       comments: "Pretty good...",
     },
     {
-      id: 3, 
+      id: 3,
       itemId: 3,
       reviewerEmail: "tladha@ucsb.edu",
       stars: 2,
