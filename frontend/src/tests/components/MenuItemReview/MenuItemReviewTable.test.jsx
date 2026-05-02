@@ -68,6 +68,26 @@ describe("MenuItemReviewTable tests", () => {
       "2",
     );
 
+    expect(
+      screen.getByTestId("MenuItemReviewTable-cell-row-0-col-itemId"),
+    ).toHaveTextContent("1");
+
+    expect(
+      screen.getByTestId("MenuItemReviewTable-cell-row-0-col-reviewerEmail"),
+    ).toHaveTextContent("tladha@ucsb.edu");
+
+    expect(
+      screen.getByTestId("MenuItemReviewTable-cell-row-0-col-stars"),
+    ).toHaveTextContent("5");
+
+    expect(
+      screen.getByTestId("MenuItemReviewTable-cell-row-0-col-dateReviewed"),
+    ).toHaveTextContent("2026-04-30T12:00:00");
+
+    expect(
+      screen.getByTestId("MenuItemReviewTable-cell-row-0-col-comments"),
+    ).toHaveTextContent("Super yummy!");
+
     const editButton = screen.queryByTestId(
       `${testId}-cell-row-0-col-Edit-button`,
     );
@@ -127,6 +147,25 @@ describe("MenuItemReviewTable tests", () => {
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent(
       "2",
     );
+    expect(
+      screen.getByTestId("MenuItemReviewTable-cell-row-0-col-itemId"),
+    ).toHaveTextContent("1");
+
+    expect(
+      screen.getByTestId("MenuItemReviewTable-cell-row-0-col-reviewerEmail"),
+    ).toHaveTextContent("tladha@ucsb.edu");
+
+    expect(
+      screen.getByTestId("MenuItemReviewTable-cell-row-0-col-stars"),
+    ).toHaveTextContent("5");
+
+    expect(
+      screen.getByTestId("MenuItemReviewTable-cell-row-0-col-dateReviewed"),
+    ).toHaveTextContent("2026-04-30T12:00:00");
+
+    expect(
+      screen.getByTestId("MenuItemReviewTable-cell-row-0-col-comments"),
+    ).toHaveTextContent("Super yummy!");
 
     const editButton = screen.getByTestId(
       `${testId}-cell-row-0-col-Edit-button`,
