@@ -77,6 +77,46 @@ describe("MenuItemReviewForm tests", () => {
     expect(screen.getByText(/Comments are required./)).toBeInTheDocument();
   });
 
+  test("itemId and stars are treated as numbers", async () => {
+    const mockSubmitAction = vi.fn();
+
+    render(
+      <Router>
+        <MenuItemReviewForm submitAction={mockSubmitAction} />
+      </Router>,
+    );
+
+    const itemIdField = screen.getByTestId("MenuItemReviewForm-itemId");
+    const starsField = screen.getByTestId("MenuItemReviewForm-stars");
+    const reviewerEmailField = screen.getByTestId(
+      "MenuItemReviewForm-reviewerEmail",
+    );
+    const dateReviewedField = screen.getByTestId(
+      "MenuItemReviewForm-dateReviewed",
+    );
+    const commentsField = screen.getByTestId("MenuItemReviewForm-comments");
+    const submitButton = screen.getByTestId("MenuItemReviewForm-submit");
+
+    fireEvent.change(itemIdField, { target: { value: "123" } });
+    fireEvent.change(starsField, { target: { value: "5" } });
+    fireEvent.change(reviewerEmailField, {
+      target: { value: "test@test.com" },
+    });
+    fireEvent.change(dateReviewedField, {
+      target: { value: "2026-04-30T12:00" },
+    });
+    fireEvent.change(commentsField, { target: { value: "good" } });
+
+    fireEvent.click(submitButton);
+
+    await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
+
+    const submittedData = mockSubmitAction.mock.calls[0][0];
+
+    expect(typeof submittedData.itemId).toBe("number");
+    expect(typeof submittedData.stars).toBe("number");
+  });
+
   test("No Error messsages on good input", async () => {
     const mockSubmitAction = vi.fn();
 
