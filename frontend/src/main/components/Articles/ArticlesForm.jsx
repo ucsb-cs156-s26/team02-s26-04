@@ -123,7 +123,7 @@ function ArticlesForm({
               })}
             />
             <Form.Control.Feedback type="invalid">
-              {errors.email && "Email is required."}
+              {errors.email.type == "required" && "Email is required."}
               {errors.email?.type === "pattern" &&
                 "Email must be in the format user@email.com"}
             </Form.Control.Feedback>
@@ -147,7 +147,7 @@ function ArticlesForm({
               })}
             />
             <Form.Control.Feedback type="invalid">
-              {errors.dateAdded && "Date added is required. "}
+              {errors.dateAdded.type === "required" && "Date added is required. "}
               {errors.dateAdded?.type === "pattern" &&
                 "Date added must be in ISO format"}
             </Form.Control.Feedback>
