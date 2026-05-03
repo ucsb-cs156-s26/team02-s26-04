@@ -24,10 +24,9 @@ function ArticlesForm({
   const isodate_regex =
     /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
   // Stryker restore Regex
-  
+
   // Stryker disable next-line all
   const email_regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
 
   return (
     <Form onSubmit={handleSubmit(submitAction)}>
@@ -121,7 +120,7 @@ function ArticlesForm({
             />
             <Form.Control.Feedback type="invalid">
               {errors.email && "Email is required."}
-              {errors.email?.type === "pattern" && 
+              {errors.email?.type === "pattern" &&
                 " Email must be in the format user@email.com"}
             </Form.Control.Feedback>
           </Form.Group>
