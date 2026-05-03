@@ -56,7 +56,7 @@ describe("ArticlesForm tests", () => {
       screen.getByText(/Email must be in the format user@email.com/),
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/Date added must be in ISO format/i)
+      screen.getByText(/Date added must be in ISO format/)
     ).toBeInTheDocument();
   });
 
