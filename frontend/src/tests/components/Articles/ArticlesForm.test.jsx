@@ -17,7 +17,7 @@ describe("ArticlesForm tests", () => {
   test("renders correctly", async () => {
     render(
       <Router>
-        <ArticlesForm/>
+        <ArticlesForm />
       </Router>,
     );
     await screen.findByText(/Title/);
@@ -53,14 +53,14 @@ describe("ArticlesForm tests", () => {
 
     await screen.findByText(/Email must be in the format user@email.com/);
     expect(
-      screen.getByText(/Date Added must be in ISO format/),
+      screen.getByText(/Email must be in the format user@email.com/),
     ).toBeInTheDocument();
   });
 
   test("Correct Error messsages on missing input", async () => {
     render(
       <Router>
-        <UCSBDateForm />
+        <ArticlesForm />
       </Router>,
     );
     await screen.findByTestId("ArticlesForm-submit");
@@ -72,7 +72,7 @@ describe("ArticlesForm tests", () => {
     expect(screen.getByText(/URL is required./)).toBeInTheDocument();
     expect(screen.getByText(/Explanation is required./)).toBeInTheDocument();
     expect(screen.getByText(/Email is required./)).toBeInTheDocument();
-    expect(screen.getByText(/DateAdded is required./)).toBeInTheDocument();
+    expect(screen.getByText(/Date added is required./)).toBeInTheDocument();
   });
 
   test("No Error messsages on good input", async () => {

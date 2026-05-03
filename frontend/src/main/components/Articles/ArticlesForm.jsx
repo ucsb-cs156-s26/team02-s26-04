@@ -59,11 +59,11 @@ function ArticlesForm({
               type="text"
               isInvalid={Boolean(errors.title)}
               {...register("title", {
-                required: true,
+                required: "Title is required.",
               })}
             />
             <Form.Control.Feedback type="invalid">
-              {errors.title && "Title is required. "}
+              {errors.title?.message}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
@@ -113,18 +113,19 @@ function ArticlesForm({
             <Form.Control
               data-testid="ArticlesForm-email"
               id="email"
-              type="email"
+              type="text"
               isInvalid={Boolean(errors.email)}
               {...register("email", {
-                required: "Email is required.",
+                required: true,
                 pattern: {
-                  value: email_regex,
-                  message: "Invalid email format.",
+                  value: email_regex
                 },
               })}
             />
             <Form.Control.Feedback type="invalid">
-              {errors.email?.message}
+              {errors.email && "Email is required."}
+              {errors.email?.type === "pattern" &&
+                "Email must be in the format user@email.com"}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
@@ -140,11 +141,13 @@ function ArticlesForm({
               isInvalid={Boolean(errors.dateAdded)}
               {...register("dateAdded", {
                 required: true,
-                pattern: isodate_regex,
+                pattern: {
+                  value: isodate_regex 
+                },
               })}
             />
             <Form.Control.Feedback type="invalid">
-              {errors.dateAdded && "Date Added is required. "}
+              {errors.dateAdded && "Date added is required. "}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
