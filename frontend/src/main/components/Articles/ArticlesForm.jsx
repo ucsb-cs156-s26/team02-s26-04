@@ -21,19 +21,16 @@ function ArticlesForm({
   // Note that even this complex regex may still need some tweaks
 
   // Stryker disable Regex
-  const isodate_regex = 
-  /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
-  
-  const email_regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  const URL_regex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+  const isodate_regex =
+    /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
   // Stryker restore Regex
- 
+  
+  // Stryker disable next-line all
+  const email_regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 
   return (
     <Form onSubmit={handleSubmit(submitAction)}>
-
       <Row>
         {initialContents && (
           <Col>
@@ -59,11 +56,11 @@ function ArticlesForm({
               type="text"
               isInvalid={Boolean(errors.title)}
               {...register("title", {
-                required: true,
+                required: "Title is required.",
               })}
             />
             <Form.Control.Feedback type="invalid">
-              {errors.title && "Title is required. "}
+              {errors.title?.message}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
@@ -113,18 +110,19 @@ function ArticlesForm({
             <Form.Control
               data-testid="ArticlesForm-email"
               id="email"
-              type="email"
+              type="text"
               isInvalid={Boolean(errors.email)}
               {...register("email", {
-                required: "Email is required.",
+                required: true,
                 pattern: {
                   value: email_regex,
-                  message: "Invalid email format.",
                 },
               })}
             />
             <Form.Control.Feedback type="invalid">
-              {errors.email?.message}
+              {errors.email && "Email is required."}
+              {errors.email?.type === "pattern" && 
+                " Email must be in the format user@email.com"}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
@@ -144,7 +142,7 @@ function ArticlesForm({
               })}
             />
             <Form.Control.Feedback type="invalid">
-              {errors.dateAdded && "Date Added is required. "}
+              {errors.dateAdded && "Date added is required. "}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
@@ -163,7 +161,6 @@ function ArticlesForm({
           </Button>
         </Col>
       </Row>
-
     </Form>
   );
 }

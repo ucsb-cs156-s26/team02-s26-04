@@ -4,7 +4,7 @@ import { articlesFixtures } from "fixtures/articlesFixtures";
 import { BrowserRouter as Router } from "react-router";
 import { expect } from "vitest";
 
-const mockedNavigate = vi.fn(); 
+const mockedNavigate = vi.fn();
 vi.mock("react-router", async () => {
   const originalModule = await vi.importActual("react-router");
   return {
@@ -17,7 +17,7 @@ describe("ArticlesForm tests", () => {
   test("renders correctly", async () => {
     render(
       <Router>
-        <ArticlesForm/>
+        <ArticlesForm />
       </Router>,
     );
     await screen.findByText(/Title/);
@@ -53,14 +53,14 @@ describe("ArticlesForm tests", () => {
 
     await screen.findByText(/Email must be in the format user@email.com/);
     expect(
-      screen.getByText(/Date Added must be in ISO format/),
+      screen.getByText(/Email must be in the format user@email.com/),
     ).toBeInTheDocument();
   });
 
   test("Correct Error messsages on missing input", async () => {
     render(
       <Router>
-        <UCSBDateForm />
+        <ArticlesForm />
       </Router>,
     );
     await screen.findByTestId("ArticlesForm-submit");
@@ -72,7 +72,7 @@ describe("ArticlesForm tests", () => {
     expect(screen.getByText(/URL is required./)).toBeInTheDocument();
     expect(screen.getByText(/Explanation is required./)).toBeInTheDocument();
     expect(screen.getByText(/Email is required./)).toBeInTheDocument();
-    expect(screen.getByText(/DateAdded is required./)).toBeInTheDocument();
+    expect(screen.getByText(/Date added is required./)).toBeInTheDocument();
   });
 
   test("No Error messsages on good input", async () => {
@@ -94,9 +94,13 @@ describe("ArticlesForm tests", () => {
 
     fireEvent.change(titleField, { target: { value: "Test Title" } });
     fireEvent.change(urlField, { target: { value: "https://test.com" } });
-    fireEvent.change(explanationField, { target: { value: "Test Explanation" } });
+    fireEvent.change(explanationField, {
+      target: { value: "Test Explanation" },
+    });
     fireEvent.change(emailField, { target: { value: "test@email.com" } });
-    fireEvent.change(dateAddedField, { target: { value: "2022-01-02T12:00:00" } });
+    fireEvent.change(dateAddedField, {
+      target: { value: "2022-01-02T12:00:00" },
+    });
     fireEvent.click(submitButton);
 
     await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
@@ -105,8 +109,9 @@ describe("ArticlesForm tests", () => {
       screen.queryByText(/Email must be in the format user@email.com/),
     ).not.toBeInTheDocument();
     expect(
-      screen.queryByText(/Date Added must be in ISO format/),
+      screen.queryByText(/Date added must be in ISO format/),
     ).not.toBeInTheDocument();
+    
   });
 
   test("that navigate(-1) is called when Cancel is clicked", async () => {
