@@ -148,6 +148,8 @@ function ArticlesForm({
             />
             <Form.Control.Feedback type="invalid">
               {errors.dateAdded && "Date added is required. "}
+              {errors.dateAdded?.type === "pattern" &&
+                "Date added must be in ISO format"}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
