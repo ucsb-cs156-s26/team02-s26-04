@@ -108,7 +108,7 @@ describe("ArticlesForm tests", () => {
       screen.queryByText(/Email must be in the format user@email.com/),
     ).not.toBeInTheDocument();
     expect(
-      screen.queryByText(/Date Added must be in ISO format/),
+      screen.queryByText(/Date added must be in ISO format/),
     ).not.toBeInTheDocument();
   });
 
