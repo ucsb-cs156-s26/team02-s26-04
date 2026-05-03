@@ -4,7 +4,7 @@ import { articlesFixtures } from "fixtures/articlesFixtures";
 import { BrowserRouter as Router } from "react-router";
 import { expect } from "vitest";
 
-const mockedNavigate = vi.fn(); 
+const mockedNavigate = vi.fn();
 vi.mock("react-router", async () => {
   const originalModule = await vi.importActual("react-router");
   return {
@@ -56,7 +56,7 @@ describe("ArticlesForm tests", () => {
       screen.getByText(/Email must be in the format user@email.com/),
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/Date added must be in ISO format/)
+      screen.getByText(/Date added must be in ISO format/),
     ).toBeInTheDocument();
   });
 
@@ -97,9 +97,13 @@ describe("ArticlesForm tests", () => {
 
     fireEvent.change(titleField, { target: { value: "Test Title" } });
     fireEvent.change(urlField, { target: { value: "https://test.com" } });
-    fireEvent.change(explanationField, { target: { value: "Test Explanation" } });
+    fireEvent.change(explanationField, {
+      target: { value: "Test Explanation" },
+    });
     fireEvent.change(emailField, { target: { value: "test@email.com" } });
-    fireEvent.change(dateAddedField, { target: { value: "2022-01-02T12:00:00" } });
+    fireEvent.change(dateAddedField, {
+      target: { value: "2022-01-02T12:00:00" },
+    });
     fireEvent.click(submitButton);
 
     await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());

@@ -21,19 +21,14 @@ function ArticlesForm({
   // Note that even this complex regex may still need some tweaks
 
   // Stryker disable Regex
-  const isodate_regex = 
-  /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
-  
+  const isodate_regex =
+    /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
+
   const email_regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  const URL_regex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
   // Stryker restore Regex
- 
-
 
   return (
     <Form onSubmit={handleSubmit(submitAction)}>
-
       <Row>
         {initialContents && (
           <Col>
@@ -118,7 +113,7 @@ function ArticlesForm({
               {...register("email", {
                 required: true,
                 pattern: {
-                  value: email_regex
+                  value: email_regex,
                 },
               })}
             />
@@ -142,7 +137,7 @@ function ArticlesForm({
               {...register("dateAdded", {
                 required: true,
                 pattern: {
-                  value: isodate_regex 
+                  value: isodate_regex,
                 },
               })}
             />
@@ -168,7 +163,6 @@ function ArticlesForm({
           </Button>
         </Col>
       </Row>
-
     </Form>
   );
 }
