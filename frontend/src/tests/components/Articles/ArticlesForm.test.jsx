@@ -55,9 +55,6 @@ describe("ArticlesForm tests", () => {
     expect(
       screen.getByText(/Email must be in the format user@email.com/),
     ).toBeInTheDocument();
-    expect(
-      screen.getByText(/Date added must be in ISO format/),
-    ).toBeInTheDocument();
   });
 
   test("Correct Error messsages on missing input", async () => {
@@ -114,6 +111,7 @@ describe("ArticlesForm tests", () => {
     expect(
       screen.queryByText(/Date added must be in ISO format/),
     ).not.toBeInTheDocument();
+    
   });
 
   test("that navigate(-1) is called when Cancel is clicked", async () => {

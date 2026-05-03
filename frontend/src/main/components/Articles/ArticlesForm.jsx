@@ -23,9 +23,11 @@ function ArticlesForm({
   // Stryker disable Regex
   const isodate_regex =
     /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
-
-  const email_regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   // Stryker restore Regex
+  
+  // Stryker disable next-line all
+  const email_regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 
   return (
     <Form onSubmit={handleSubmit(submitAction)}>
@@ -119,8 +121,8 @@ function ArticlesForm({
             />
             <Form.Control.Feedback type="invalid">
               {errors.email && "Email is required."}
-              {errors.email?.type === "pattern" &&
-                "Email must be in the format user@email.com"}
+              {errors.email?.type === "pattern" && 
+                " Email must be in the format user@email.com"}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
@@ -132,19 +134,15 @@ function ArticlesForm({
             <Form.Control
               data-testid="ArticlesForm-dateAdded"
               id="dateAdded"
-              type="text"
+              type="datetime-local"
               isInvalid={Boolean(errors.dateAdded)}
               {...register("dateAdded", {
                 required: true,
-                pattern: {
-                  value: isodate_regex,
-                },
+                pattern: isodate_regex,
               })}
             />
             <Form.Control.Feedback type="invalid">
               {errors.dateAdded && "Date added is required. "}
-              {errors.dateAdded?.type === "pattern" &&
-                "Date added must be in ISO format"}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
