@@ -5,15 +5,19 @@ import { useBackendMutation } from "main/utils/useBackend";
 import {
   cellToAxiosParamsDelete,
   onDeleteSuccess,
-} from "main/utils/articlesUtils";
+} from "main/utils/helpRequestUtils";
 import { useNavigate } from "react-router";
 import { hasRole } from "main/utils/useCurrentUser";
 
-export default function ArticlesTable({ articles, currentUser }) {
+export default function HelpRequestTable({
+  helpRequests,
+  currentUser,
+  testIdPrefix = "HelpRequestTable",
+}) {
   const navigate = useNavigate();
 
   const editCallback = (cell) => {
-    navigate(`/articles/edit/${cell.row.original.id}`);
+    navigate(`/helprequests/edit/${cell.row.original.id}`);
   };
 
   // Stryker disable all : hard to test for query caching
@@ -21,7 +25,7 @@ export default function ArticlesTable({ articles, currentUser }) {
   const deleteMutation = useBackendMutation(
     cellToAxiosParamsDelete,
     { onSuccess: onDeleteSuccess },
-    ["/api/articles/all"],
+    ["/api/helprequests/all"],
   );
   // Stryker restore all
 
@@ -35,38 +39,41 @@ export default function ArticlesTable({ articles, currentUser }) {
       header: "id",
       accessorKey: "id", // accessor is the "key" in the data
     },
+
     {
-      header: "title",
-      accessorKey: "title",
+      header: "Requester Email",
+      accessorKey: "requesterEmail",
     },
     {
-      header: "url",
-      accessorKey: "url",
+      header: "Team Id",
+      accessorKey: "teamId",
     },
     {
-      header: "explanation",
+      header: "Table or Breakout Room",
+      accessorKey: "tableOrBreakoutRoom",
+    },
+    {
+      header: "Request Time",
+      accessorKey: "requestTime",
+    },
+    {
+      header: "Explanation",
       accessorKey: "explanation",
     },
     {
-      header: "email",
-      accessorKey: "email",
-    },
-    {
-      header: "dateAdded",
-      accessorKey: "dateAdded",
+      header: "Solved",
+      accessorKey: "solved",
     },
   ];
 
   if (hasRole(currentUser, "ROLE_ADMIN")) {
+    columns.push(ButtonColumn("Edit", "primary", editCallback, testIdPrefix));
     columns.push(
-      ButtonColumn("Edit", "primary", editCallback, "ArticlesTable"),
-    );
-    columns.push(
-      ButtonColumn("Delete", "danger", deleteCallback, "ArticlesTable"),
+      ButtonColumn("Delete", "danger", deleteCallback, testIdPrefix),
     );
   }
 
   return (
-    <OurTable data={articles} columns={columns} testid={"ArticlesTable"} />
+    <OurTable data={helpRequests} columns={columns} testid={testIdPrefix} />
   );
 }
