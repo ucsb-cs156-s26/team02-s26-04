@@ -8,6 +8,7 @@
 
 const menuItemReviewFixtures = {
   oneReview: {
+    id: 1,
     itemId: 1,
     reviewerEmail: "tladha@ucsb.edu",
     stars: 5,
@@ -16,6 +17,7 @@ const menuItemReviewFixtures = {
   },
   threeReviews: [
     {
+      id: 1,
       itemId: 1,
       reviewerEmail: "tladha@ucsb.edu",
       stars: 5,
@@ -23,6 +25,7 @@ const menuItemReviewFixtures = {
       comments: "Super yummy!",
     },
     {
+      id: 2,
       itemId: 2,
       reviewerEmail: "tladha@ucsb.edu",
       stars: 4,
@@ -30,6 +33,7 @@ const menuItemReviewFixtures = {
       comments: "Pretty good...",
     },
     {
+      id: 3,
       itemId: 3,
       reviewerEmail: "tladha@ucsb.edu",
       stars: 2,
