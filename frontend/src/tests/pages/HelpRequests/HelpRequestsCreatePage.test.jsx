@@ -166,7 +166,7 @@ async function helpRequestsCreatePageSubmitPostsAndRedirects() {
 }
 
 /* Stryker disable BlockStatement */
-test(helpRequestsCreatePageSubmitPostsAndRedirects.name, async () => {
+test("on submit, makes request to backend, and redirects to /helprequests", async () => {
   await helpRequestsCreatePageSubmitPostsAndRedirects();
   expect(mockNavigate).toHaveBeenCalledTimes(1);
 });

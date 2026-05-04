@@ -49,10 +49,12 @@ async function helpRequestFormRendersWithNoInitialContents() {
   expect(screen.getByTestId(`${testId}-solved`)).toBeInTheDocument();
   expect(screen.getByTestId(`${testId}-submit`)).toBeInTheDocument();
   expect(screen.getByTestId(`${testId}-cancel`)).toBeInTheDocument();
+
+  expect(screen.queryByText(/Request Time is required/)).not.toBeInTheDocument();
 }
 
 /* Stryker disable BlockStatement */
-test(helpRequestFormRendersWithNoInitialContents.name, async () => {
+test("renders correctly with no initialContents", async () => {
   await helpRequestFormRendersWithNoInitialContents();
   expect(screen.getByRole("button", { name: /Create/i })).toBeInTheDocument();
 });
@@ -113,10 +115,12 @@ async function helpRequestFormRendersWithInitialContents() {
     initialContents.explanation,
   );
   expect(screen.getByTestId(`${testId}-solved`)).not.toBeChecked();
+
+  expect(screen.queryByText(/Request Time is required/)).not.toBeInTheDocument();
 }
 
 /* Stryker disable BlockStatement */
-test(helpRequestFormRendersWithInitialContents.name, async () => {
+test("renders correctly when passing in initialContents", async () => {
   await helpRequestFormRendersWithInitialContents();
   expect(screen.getByTestId(`${testId}-id`)).toHaveValue("1");
 });
@@ -140,7 +144,7 @@ async function helpRequestFormCancelCallsNavigateBack() {
 }
 
 /* Stryker disable BlockStatement */
-test(helpRequestFormCancelCallsNavigateBack.name, async () => {
+test("that navigate(-1) is called when Cancel is clicked", async () => {
   await helpRequestFormCancelCallsNavigateBack();
   expect(mockedNavigate).toHaveBeenCalledTimes(1);
 });
@@ -169,7 +173,7 @@ async function helpRequestFormValidationMessages() {
 }
 
 /* Stryker disable BlockStatement */
-test(helpRequestFormValidationMessages.name, async () => {
+test("that the correct validations are performed", async () => {
   await helpRequestFormValidationMessages();
   expect(screen.getByText(/Explanation is required/)).toBeInTheDocument();
 });
@@ -211,7 +215,7 @@ async function helpRequestFormRequesterEmailMaxLength() {
 }
 
 /* Stryker disable BlockStatement */
-test(helpRequestFormRequesterEmailMaxLength.name, async () => {
+test("requester email max length validation", async () => {
   await helpRequestFormRequesterEmailMaxLength();
   expect(screen.getByText("Max length 30 characters")).toBeInTheDocument();
 });
