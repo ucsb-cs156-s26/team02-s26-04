@@ -63,11 +63,11 @@ describe("MenuItemReviewCreatePage tests", () => {
   test("when you fill in the form and hit submit, it makes a request to the backend", async () => {
     const queryClient = new QueryClient();
     const menuItemReview = {
-      id: 1, 
+      id: 1,
       itemId: 1,
-      reviewerEmail: "tladha@ucsb.edu", 
-      stars: 5, 
-      dateReviewed: "2026-05-01T01:00", 
+      reviewerEmail: "tladha@ucsb.edu",
+      stars: 5,
+      dateReviewed: "2026-05-01T01:00",
       comments: "really delicious",
     };
 
@@ -86,18 +86,26 @@ describe("MenuItemReviewCreatePage tests", () => {
         screen.getByTestId("MenuItemReviewForm-itemId"),
       ).toBeInTheDocument();
     });
-   
+
     const itemIdField = screen.getByTestId("MenuItemReviewForm-itemId");
-    const reviewerEmailField = screen.getByTestId("MenuItemReviewForm-reviewerEmail");
+    const reviewerEmailField = screen.getByTestId(
+      "MenuItemReviewForm-reviewerEmail",
+    );
     const starsField = screen.getByTestId("MenuItemReviewForm-stars");
-    const dateReviewedField = screen.getByTestId("MenuItemReviewForm-dateReviewed");
+    const dateReviewedField = screen.getByTestId(
+      "MenuItemReviewForm-dateReviewed",
+    );
     const commentsField = screen.getByTestId("MenuItemReviewForm-comments");
     const submitButton = screen.getByTestId("MenuItemReviewForm-submit");
 
-    fireEvent.change(itemIdField, { target: { value: 1 } }); 
-    fireEvent.change(reviewerEmailField, { target: { value: "tladha@ucsb.edu" } }); 
-    fireEvent.change(starsField, { target: { value: 5 } }); 
-    fireEvent.change(dateReviewedField, { target: { value: "2026-05-01T01:00" } }); 
+    fireEvent.change(itemIdField, { target: { value: 1 } });
+    fireEvent.change(reviewerEmailField, {
+      target: { value: "tladha@ucsb.edu" },
+    });
+    fireEvent.change(starsField, { target: { value: 5 } });
+    fireEvent.change(dateReviewedField, {
+      target: { value: "2026-05-01T01:00" },
+    });
     fireEvent.change(commentsField, { target: { value: "really delicious" } });
 
     expect(submitButton).toBeInTheDocument();
@@ -107,11 +115,11 @@ describe("MenuItemReviewCreatePage tests", () => {
     await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
 
     expect(axiosMock.history.post[0].params).toEqual({
-      itemId: 1, 
-      reviewerEmail: "tladha@ucsb.edu", 
-      stars: 5, 
-      dateReviewed: "2026-05-01T01:00", 
-      comments: "really delicious"
+      itemId: 1,
+      reviewerEmail: "tladha@ucsb.edu",
+      stars: 5,
+      dateReviewed: "2026-05-01T01:00",
+      comments: "really delicious",
     });
 
     expect(mockToast).toBeCalledWith(
