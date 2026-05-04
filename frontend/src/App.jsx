@@ -177,6 +177,9 @@ function App() {
             exact
             path="/menuitemreview"
             element={<MenuItemReviewIndexPage />}
+          />
+          <Route
+            exact
             path="/ucsbdiningcommonsmenuitem"
             element={<UCSBDiningCommonsMenuItemIndexPage />}
           />
@@ -193,6 +196,9 @@ function App() {
             exact
             path="/menuitemreview/create"
             element={<MenuItemReviewCreatePage />}
+          />
+          <Route
+            exact
             path="/ucsbdiningcommonsmenuitem/edit/:id"
             element={<UCSBDiningCommonsMenuItemEditPage />}
           />
