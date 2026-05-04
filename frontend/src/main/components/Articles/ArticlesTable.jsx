@@ -5,11 +5,11 @@ import { useBackendMutation } from "main/utils/useBackend";
 import {
   cellToAxiosParamsDelete,
   onDeleteSuccess,
-} from "main/utils/ArticlesUtils";
+} from "main/utils/articlesUtils";
 import { useNavigate } from "react-router";
 import { hasRole } from "main/utils/useCurrentUser";
 
-export default function ArticlesTable({ dates, currentUser }) {
+export default function ArticlesTable({ articles, currentUser }) {
   const navigate = useNavigate();
 
   const editCallback = (cell) => {
@@ -66,5 +66,5 @@ export default function ArticlesTable({ dates, currentUser }) {
     );
   }
 
-  return <OurTable data={dates} columns={columns} testid={"ArticlesTable"} />;
+  return <OurTable data={articles} columns={columns} testid={"ArticlesTable"} />;
 }
