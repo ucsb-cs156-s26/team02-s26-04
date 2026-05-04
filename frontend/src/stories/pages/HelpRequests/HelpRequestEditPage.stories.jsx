@@ -4,14 +4,14 @@ import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import { helpRequestFixtures } from "fixtures/helpRequestFixtures";
 import { http, HttpResponse } from "msw";
 
-import HelpRequestEditPage from "main/pages/HelpRequests/HelpRequestEditPage";
+import HelpRequestsEditPage from "main/pages/HelpRequests/HelpRequestsEditPage";
 
 export default {
-  title: "pages/HelpRequests/HelpRequestEditPage",
-  component: HelpRequestEditPage,
+  title: "pages/HelpRequests/HelpRequestsEditPage",
+  component: HelpRequestsEditPage,
 };
 
-const Template = () => <HelpRequestEditPage storybook={true} />;
+const Template = () => <HelpRequestsEditPage storybook={true} />;
 
 export const Default = Template.bind({});
 Default.parameters = {
