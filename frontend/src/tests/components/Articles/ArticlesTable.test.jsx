@@ -6,7 +6,6 @@ import { MemoryRouter } from "react-router";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
-import ArticlesTable from "main/components/Articles/ArticlesTable";
 
 const mockedNavigate = vi.fn();
 vi.mock("react-router", async () => {
@@ -34,8 +33,22 @@ describe("UserTable tests", () => {
       </QueryClientProvider>,
     );
 
-    const expectedHeaders = ["id", "title", "url", "explanation", "email", "dateAdded"];
-    const expectedFields = ["id", "title", "url", "explanation", "email", "dateAdded"];
+    const expectedHeaders = [
+      "id",
+      "title",
+      "url",
+      "explanation",
+      "email",
+      "dateAdded",
+    ];
+    const expectedFields = [
+      "id",
+      "title",
+      "url",
+      "explanation",
+      "email",
+      "dateAdded",
+    ];
     const testId = "ArticlesTable";
 
     expectedHeaders.forEach((headerText) => {
@@ -80,8 +93,22 @@ describe("UserTable tests", () => {
       </QueryClientProvider>,
     );
 
-    const expectedHeaders = ["id", "title", "url", "explanation", "email", "dateAdded"];
-    const expectedFields = ["id", "title", "url", "explanation", "email", "dateAdded"];
+    const expectedHeaders = [
+      "id",
+      "title",
+      "url",
+      "explanation",
+      "email",
+      "dateAdded",
+    ];
+    const expectedFields = [
+      "id",
+      "title",
+      "url",
+      "explanation",
+      "email",
+      "dateAdded",
+    ];
     const testId = "ArticlesTable";
 
     expectedHeaders.forEach((headerText) => {
@@ -101,25 +128,25 @@ describe("UserTable tests", () => {
       "2",
     );
 
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-title`)).toHaveTextContent(
-    "Article 1",
-    );
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-title`),
+    ).toHaveTextContent("Article 1");
 
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-url`)).toHaveTextContent(
-    "dailynexus.com/article1",
-    );
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-url`),
+    ).toHaveTextContent("dailynexus.com/article1");
 
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-explanation`)).toHaveTextContent(
-    "This is the first article",
-    );
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-explanation`),
+    ).toHaveTextContent("This is the first article");
 
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-email`)).toHaveTextContent(
-    "user@example.com",
-    );
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-email`),
+    ).toHaveTextContent("user@example.com");
 
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-dateAdded`)).toHaveTextContent(
-    "2022-01-02T12:00:00",
-    );
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-dateAdded`),
+    ).toHaveTextContent("2022-01-02T12:00:00");
 
     const editButton = screen.getByTestId(
       `${testId}-cell-row-0-col-Edit-button`,
@@ -171,9 +198,7 @@ describe("UserTable tests", () => {
     const currentUser = currentUserFixtures.adminUser;
 
     const axiosMock = new AxiosMockAdapter(axios);
-    axiosMock
-      .onDelete("/api/articles")
-      .reply(200, { message: "Date deleted" });
+    axiosMock.onDelete("/api/articles").reply(200, { message: "Date deleted" });
 
     // act - render the component
     render(
