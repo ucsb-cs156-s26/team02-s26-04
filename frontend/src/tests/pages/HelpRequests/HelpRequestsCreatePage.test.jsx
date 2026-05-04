@@ -69,7 +69,7 @@ async function helpRequestsCreatePageRenders() {
 }
 
 /* Stryker disable BlockStatement */
-test(helpRequestsCreatePageRenders.name, async () => {
+test("renders correctly", async () => {
   await helpRequestsCreatePageRenders();
   expect(screen.getByRole("heading")).toHaveTextContent(
     "Create New Help Request",

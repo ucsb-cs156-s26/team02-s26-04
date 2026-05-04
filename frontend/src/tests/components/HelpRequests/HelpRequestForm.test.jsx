@@ -50,7 +50,9 @@ async function helpRequestFormRendersWithNoInitialContents() {
   expect(screen.getByTestId(`${testId}-submit`)).toBeInTheDocument();
   expect(screen.getByTestId(`${testId}-cancel`)).toBeInTheDocument();
 
-  expect(screen.queryByText(/Request Time is required/)).not.toBeInTheDocument();
+  expect(
+    screen.queryByText(/Request Time is required/),
+  ).not.toBeInTheDocument();
 }
 
 /* Stryker disable BlockStatement */
@@ -116,7 +118,9 @@ async function helpRequestFormRendersWithInitialContents() {
   );
   expect(screen.getByTestId(`${testId}-solved`)).not.toBeChecked();
 
-  expect(screen.queryByText(/Request Time is required/)).not.toBeInTheDocument();
+  expect(
+    screen.queryByText(/Request Time is required/),
+  ).not.toBeInTheDocument();
 }
 
 /* Stryker disable BlockStatement */
