@@ -100,9 +100,7 @@ describe("HelpRequestsIndexPage tests", () => {
     const requesterEmail = screen.getByText("erik_rodriguez@ucsb.edu");
     expect(requesterEmail).toBeInTheDocument();
 
-    const explanation = screen.getByText(
-      "Help request for team 4 table",
-    );
+    const explanation = screen.getByText("Help request for team 4 table");
     expect(explanation).toBeInTheDocument();
 
     // for non-admin users, details button is visible, but the edit and delete buttons should not be visible
