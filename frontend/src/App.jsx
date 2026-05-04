@@ -59,7 +59,11 @@ function App() {
       )}
       {hasRole(currentUser, "ROLE_USER") && (
         <>
-          <Route exact path="/helprequests" element={<HelpRequestsIndexPage />} />
+          <Route
+            exact
+            path="/helprequests"
+            element={<HelpRequestsIndexPage />}
+          />
         </>
       )}
       {hasRole(currentUser, "ROLE_ADMIN") && (
@@ -120,7 +124,11 @@ function App() {
       )}
       {hasRole(currentUser, "ROLE_USER") && (
         <>
-          <Route exact path="/helprequests" element={<HelpRequestsIndexPage />} />
+          <Route
+            exact
+            path="/helprequests"
+            element={<HelpRequestsIndexPage />}
+          />
         </>
       )}
       {hasRole(currentUser, "ROLE_ADMIN") && (
