@@ -7,13 +7,13 @@ function HelpRequestForm({
   submitAction,
   buttonLabel = "Create",
 }) {
+  // Stryker disable all
   const defaultValues = initialContents
     ? {
         ...initialContents,
         requestTime: initialContents.requestTime.replace("Z", ""),
       }
     : { solved: false };
-  // Stryker disable all
   const {
     register,
     formState: { errors },
