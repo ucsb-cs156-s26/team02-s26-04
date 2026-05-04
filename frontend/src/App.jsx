@@ -14,6 +14,9 @@ import RestaurantEditPage from "main/pages/Restaurants/RestaurantEditPage";
 import HelpRequestsIndexPage from "main/pages/HelpRequests/HelpRequestsIndexPage";
 import HelpRequestsCreatePage from "main/pages/HelpRequests/HelpRequestsCreatePage";
 import HelpRequestsEditPage from "main/pages/HelpRequests/HelpRequestsEditPage";
+import UCSBOrganizationIndexPage from "main/pages/UCSBOrganization/UCSBOrganizationIndexPage";
+import UCSBOrganizationCreatePage from "main/pages/UCSBOrganization/UCSBOrganizationCreatePage";
+import UCSBOrganizationEditPage from "main/pages/UCSBOrganization/UCSBOrganizationEditPage";
 
 import PlaceholderIndexPage from "main/pages/Placeholder/PlaceholderIndexPage";
 import PlaceholderCreatePage from "main/pages/Placeholder/PlaceholderCreatePage";
@@ -92,6 +95,29 @@ function App() {
             exact
             path="/restaurants/create"
             element={<RestaurantCreatePage />}
+          />
+        </>
+      )}
+      {hasRole(currentUser, "ROLE_USER") && (
+        <>
+          <Route
+            exact
+            path="/ucsborganization"
+            element={<UCSBOrganizationIndexPage />}
+          />
+        </>
+      )}
+      {hasRole(currentUser, "ROLE_ADMIN") && (
+        <>
+          <Route
+            exact
+            path="/ucsborganization/edit/:id"
+            element={<UCSBOrganizationEditPage />}
+          />
+          <Route
+            exact
+            path="/ucsborganization/create"
+            element={<UCSBOrganizationCreatePage />}
           />
         </>
       )}
