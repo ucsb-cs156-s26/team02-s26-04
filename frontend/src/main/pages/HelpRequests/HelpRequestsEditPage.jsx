@@ -35,6 +35,7 @@ export default function HelpRequestsEditPage({ storybook = false }) {
       requesterEmail: helpRequest.requesterEmail,
       teamId: helpRequest.teamId,
       tableOrBreakoutRoom: helpRequest.tableOrBreakoutRoom,
+      // Stryker disable next-line StringLiteral : form defaultValues strip Z; submitted requestTime never contains Z
       requestTime: helpRequest.requestTime.replace("Z", ""),
       explanation: helpRequest.explanation,
       solved: helpRequest.solved,
