@@ -3,14 +3,14 @@ import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import { http, HttpResponse } from "msw";
 
-import HelpRequestCreatePage from "main/pages/HelpRequests/HelpRequestCreatePage";
+import HelpRequestsCreatePage from "main/pages/HelpRequests/HelpRequestsCreatePage";
 
 export default {
-  title: "pages/HelpRequests/HelpRequestCreatePage",
-  component: HelpRequestCreatePage,
+  title: "pages/HelpRequests/HelpRequestsCreatePage",
+  component: HelpRequestsCreatePage,
 };
 
-const Template = () => <HelpRequestCreatePage storybook={true} />;
+const Template = () => <HelpRequestsCreatePage storybook={true} />;
 
 export const Default = Template.bind({});
 Default.parameters = {
