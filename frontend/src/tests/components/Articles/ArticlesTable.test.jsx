@@ -1,6 +1,6 @@
 import { fireEvent, render, waitFor, screen } from "@testing-library/react";
-import { ucsbDatesFixtures } from "fixtures/articlesFixtures";
-import UCSBDatesTable from "main/components/Articles/ArticlesTable";
+import { articlesFixtures } from "fixtures/articlesFixtures";
+import ArticlesTable from "main/components/Articles/ArticlesTable";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MemoryRouter } from "react-router";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
@@ -27,14 +27,14 @@ describe("UserTable tests", () => {
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
           <ArticlesTable
-            dates={articlesFixtures.threeArticles}
+            articles={articlesFixtures.threeArticles}
             currentUser={currentUser}
           />
         </MemoryRouter>
       </QueryClientProvider>,
     );
 
-    const expectedHeaders = ["id", "Title", "URL", "Explanation", "Email", "Date Added"];
+    const expectedHeaders = ["id", "title", "url", "explanation", "email", "dateAdded"];
     const expectedFields = ["id", "title", "url", "explanation", "email", "dateAdded"];
     const testId = "ArticlesTable";
 
@@ -73,14 +73,14 @@ describe("UserTable tests", () => {
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
           <ArticlesTable
-            dates={articlesFixtures.threeArticles}
+            articles={articlesFixtures.threeArticles}
             currentUser={currentUser}
           />
         </MemoryRouter>
       </QueryClientProvider>,
     );
 
-    const expectedHeaders = ["id", "Title", "URL", "Explanation", "Email", "Date Added"];
+    const expectedHeaders = ["id", "title", "url", "explanation", "email", "dateAdded"];
     const expectedFields = ["id", "title", "url", "explanation", "email", "dateAdded"];
     const testId = "ArticlesTable";
 
@@ -99,6 +99,26 @@ describe("UserTable tests", () => {
     );
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent(
       "2",
+    );
+
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-title`)).toHaveTextContent(
+    "Article 1",
+    );
+
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-url`)).toHaveTextContent(
+    "dailynexus.com/article1",
+    );
+
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-explanation`)).toHaveTextContent(
+    "This is the first article",
+    );
+
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-email`)).toHaveTextContent(
+    "user@example.com",
+    );
+
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-dateAdded`)).toHaveTextContent(
+    "2022-01-02T12:00:00",
     );
 
     const editButton = screen.getByTestId(
@@ -121,7 +141,7 @@ describe("UserTable tests", () => {
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
           <ArticlesTable
-            dates={articlesFixtures.threeArticles}
+            articles={articlesFixtures.threeArticles}
             currentUser={currentUser}
           />
         </MemoryRouter>
@@ -160,7 +180,7 @@ describe("UserTable tests", () => {
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
           <ArticlesTable
-            dates={articlesFixtures.threeArticles}
+            articles={articlesFixtures.threeArticles}
             currentUser={currentUser}
           />
         </MemoryRouter>
