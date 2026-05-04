@@ -111,7 +111,7 @@ public class ArticlesController extends ApiController {
   @Operation(summary = "Delete an Articles")
   @PreAuthorize("hasRole('ROLE_ADMIN')")
   @DeleteMapping("")
-  public Object deleteArticles(@Parameter(name = "id") @RequestParam Long id) {
+  public Object deleteArticle(@Parameter(name = "id") @RequestParam Long id) {
     Articles articles =
         articlesRepository
             .findById(id)
@@ -131,7 +131,7 @@ public class ArticlesController extends ApiController {
   @Operation(summary = "Update a single article")
   @PreAuthorize("hasRole('ROLE_ADMIN')")
   @PutMapping("")
-  public Articles updateArticles(
+  public Articles updateArticle(
       @Parameter(name = "id") @RequestParam Long id, @RequestBody @Valid Articles incoming) {
 
     Articles articles =
