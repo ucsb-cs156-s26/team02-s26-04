@@ -12,7 +12,7 @@ function HelpRequestForm({
         ...initialContents,
         requestTime: initialContents.requestTime.replace("Z", ""),
       }
-    : {};
+    : { solved: false };
   // Stryker disable all
   const {
     register,
@@ -102,9 +102,7 @@ function HelpRequestForm({
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label htmlFor="localDateTime">
-          Request Time (iso format)
-        </Form.Label>
+        <Form.Label htmlFor="requestTime">Request Time (iso format)</Form.Label>
         <Form.Control
           data-testid={testIdPrefix + "-requestTime"}
           id="requestTime"
@@ -143,9 +141,7 @@ function HelpRequestForm({
           id="solved"
           type="checkbox"
           isInvalid={Boolean(errors.solved)}
-          {...register("solved", {
-            required: "Solved is required.",
-          })}
+          {...register("solved")}
         />
         <Form.Control.Feedback type="invalid">
           {errors.solved?.message}
