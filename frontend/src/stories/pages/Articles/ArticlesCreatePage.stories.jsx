@@ -3,7 +3,7 @@ import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import { http, HttpResponse } from "msw";
 
-import ArticlesCreatePage from "main/pages/Articles/UCSBDatesCreatePage";
+import ArticlesCreatePage from "main/pages/Articles/ArticlesCreatePage";
 
 export default {
   title: "pages/Articles/ArticlesCreatePage",
