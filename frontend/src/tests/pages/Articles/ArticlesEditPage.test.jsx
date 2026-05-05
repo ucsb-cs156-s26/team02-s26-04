@@ -69,10 +69,8 @@ describe("ArticlesEditPage tests", () => {
       );
 
       await screen.findByText(/Welcome/);
-      await screen.findByText("Edit Article");
-      expect(
-        screen.queryByTestId("ArticleForm-quarterYYYYQ"),
-      ).not.toBeInTheDocument();
+      await screen.findByText("Edit Articles");
+      expect(screen.queryByTestId("ArticleForm-title")).not.toBeInTheDocument();
       restoreConsole();
     });
   });
@@ -123,10 +121,8 @@ describe("ArticlesEditPage tests", () => {
         </QueryClientProvider>,
       );
       await screen.findByText(/Welcome/);
-      await screen.findByTestId("ArticleForm-quarterYYYYQ");
-      expect(
-        screen.getByTestId("ArticleForm-quarterYYYYQ"),
-      ).toBeInTheDocument();
+      await screen.findByTestId("ArticleForm-title");
+      expect(screen.getByTestId("ArticleForm-title")).toBeInTheDocument();
     });
 
     test("Is populated with the data provided", async () => {
@@ -138,7 +134,7 @@ describe("ArticlesEditPage tests", () => {
         </QueryClientProvider>,
       );
 
-      await screen.findByTestId("ArticleForm-quarterYYYYQ");
+      await screen.findByTestId("ArticleForm-title");
 
       const idField = screen.getByTestId("ArticleForm-id");
       const titleField = screen.getByTestId("ArticleForm-title");
@@ -166,7 +162,7 @@ describe("ArticlesEditPage tests", () => {
         </QueryClientProvider>,
       );
 
-      await screen.findByTestId("ArticleForm-quarterYYYYQ");
+      await screen.findByTestId("ArticleForm-title");
 
       const idField = screen.getByTestId("ArticleForm-id");
       const titleField = screen.getByTestId("ArticleForm-title");
