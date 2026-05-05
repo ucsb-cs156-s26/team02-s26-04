@@ -209,7 +209,7 @@ describe("ArticlesEditPage tests", () => {
         JSON.stringify({
           title: "Christmas Morning",
           url: "darkside.com/christmas-morning",
-          explanation: "Christmas morning is the best day",
+          explanation: "Christmas Morning is the best day",
           email: "user@hotmail.com",
           dateAdded: "2022-12-25T08:00",
         }),
