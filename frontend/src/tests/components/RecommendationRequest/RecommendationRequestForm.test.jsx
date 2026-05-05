@@ -1,5 +1,5 @@
 import { render, waitFor, fireEvent, screen } from "@testing-library/react";
-import RecommendationRequestForm from "main/components/RecommendationRequests/RecommendationRequestForm";
+import RecommendationRequestForm from "main/components/RecommendationRequest/RecommendationRequestForm";
 import { recommendationRequestsFixtures } from "fixtures/recommendationRequestsFixtures";
 import { BrowserRouter as Router } from "react-router";
 import { expect } from "vitest";
