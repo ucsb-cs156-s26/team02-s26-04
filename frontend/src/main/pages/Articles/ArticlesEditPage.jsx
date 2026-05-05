@@ -40,8 +40,8 @@ export default function ArticlesEditPage({ storybook = false }) {
     },
   });
 
-  const onSuccess = (ucsbDate) => {
-    toast(`Article Updated - id: ${ucsbDate.id} title: ${ucsbDate.title}`);
+  const onSuccess = (articles) => {
+    toast(`Article Updated - id: ${articles.id} title: ${articles.title}`);
   };
 
   const mutation = useBackendMutation(

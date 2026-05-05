@@ -145,9 +145,7 @@ describe("ArticlesEditPage tests", () => {
       const urlField = screen.getByTestId("ArticleForm-url");
       const explanationField = screen.getByTestId("ArticleForm-explanation");
       const emailField = screen.getByTestId("ArticleForm-email");
-      const dateAddedField = screen.getByTestId(
-        "ArticleForm-dateAdded",
-      );
+      const dateAddedField = screen.getByTestId("ArticleForm-dateAdded");
       const submitButton = screen.getByTestId("ArticleForm-submit");
 
       expect(idField).toHaveValue("17");
@@ -175,9 +173,7 @@ describe("ArticlesEditPage tests", () => {
       const urlField = screen.getByTestId("ArticleForm-url");
       const explanationField = screen.getByTestId("ArticleForm-explanation");
       const emailField = screen.getByTestId("ArticleForm-email");
-      const dateAddedField = screen.getByTestId(
-        "ArticleForm-dateAdded",
-      );
+      const dateAddedField = screen.getByTestId("ArticleForm-dateAdded");
       const submitButton = screen.getByTestId("ArticleForm-submit");
 
       expect(idField).toHaveValue("17");
@@ -190,8 +186,12 @@ describe("ArticlesEditPage tests", () => {
       expect(submitButton).toBeInTheDocument();
 
       fireEvent.change(titleField, { target: { value: "Christmas Morning" } });
-      fireEvent.change(urlField, { target: { value: "darkside.com/christmas-morning" } });
-      fireEvent.change(explanationField, { target: { value: "Christmas is the best day" } });
+      fireEvent.change(urlField, {
+        target: { value: "darkside.com/christmas-morning" },
+      });
+      fireEvent.change(explanationField, {
+        target: { value: "Christmas is the best day" },
+      });
       fireEvent.change(emailField, { target: { value: "user@hotmail.com" } });
       fireEvent.change(dateAddedField, {
         target: { value: "2022-12-25T08:00" },
@@ -203,18 +203,18 @@ describe("ArticlesEditPage tests", () => {
       expect(mockToast).toBeCalledWith(
         "Article Updated - id: 17 name: Christmas Morning",
       );
-      expect(mockNavigate).toBeCalledWith({ to: "/ucsbdates" });
+      expect(mockNavigate).toBeCalledWith({ to: "/articles" });
 
       expect(axiosMock.history.put.length).toBe(1); // times called
       expect(axiosMock.history.put[0].params).toEqual({ id: 17 });
       expect(axiosMock.history.put[0].data).toBe(
         JSON.stringify({
-        id: "17",
-        title: "Christmas Morning",
-        url: "darkside.com/christmas-morning",
-        explanation: "Christmas Morning is the best day",
-        email: "user@hotmail.com",
-        dateAdded: "2022-12-25T08:00",
+          id: "17",
+          title: "Christmas Morning",
+          url: "darkside.com/christmas-morning",
+          explanation: "Christmas Morning is the best day",
+          email: "user@hotmail.com",
+          dateAdded: "2022-12-25T08:00",
         }),
       ); // posted object
     });
