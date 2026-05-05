@@ -33,8 +33,24 @@ describe("RecommendationRequestTable tests", () => {
       </QueryClientProvider>,
     );
 
-    const expectedHeaders = ["id", "Requester Email", "Professor Email", "Explanation", "Date Requested", "Date Needed", "Done"];
-    const expectedFields = ["id", "requesterEmail", "professorEmail", "explanation", "dateRequested", "dateNeeded", "done"];
+    const expectedHeaders = [
+      "id",
+      "Requester Email",
+      "Professor Email",
+      "Explanation",
+      "Date Requested",
+      "Date Needed",
+      "Done",
+    ];
+    const expectedFields = [
+      "id",
+      "requesterEmail",
+      "professorEmail",
+      "explanation",
+      "dateRequested",
+      "dateNeeded",
+      "done",
+    ];
     const testId = "RecommendationRequestTable";
 
     expectedHeaders.forEach((headerText) => {
@@ -47,13 +63,21 @@ describe("RecommendationRequestTable tests", () => {
       expect(header).toBeInTheDocument();
     });
 
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("1");
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("2");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent(
+      "1",
+    );
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent(
+      "2",
+    );
 
-    const editButton = screen.queryByTestId(`${testId}-cell-row-0-col-Edit-button`);
+    const editButton = screen.queryByTestId(
+      `${testId}-cell-row-0-col-Edit-button`,
+    );
     expect(editButton).not.toBeInTheDocument();
 
-    const deleteButton = screen.queryByTestId(`${testId}-cell-row-0-col-Delete-button`);
+    const deleteButton = screen.queryByTestId(
+      `${testId}-cell-row-0-col-Delete-button`,
+    );
     expect(deleteButton).not.toBeInTheDocument();
   });
 
@@ -71,8 +95,24 @@ describe("RecommendationRequestTable tests", () => {
       </QueryClientProvider>,
     );
 
-    const expectedHeaders = ["id", "Requester Email", "Professor Email", "Explanation", "Date Requested", "Date Needed", "Done"];
-    const expectedFields = ["id", "requesterEmail", "professorEmail", "explanation", "dateRequested", "dateNeeded", "done"];
+    const expectedHeaders = [
+      "id",
+      "Requester Email",
+      "Professor Email",
+      "Explanation",
+      "Date Requested",
+      "Date Needed",
+      "Done",
+    ];
+    const expectedFields = [
+      "id",
+      "requesterEmail",
+      "professorEmail",
+      "explanation",
+      "dateRequested",
+      "dateNeeded",
+      "done",
+    ];
     const testId = "RecommendationRequestTable";
 
     expectedHeaders.forEach((headerText) => {
@@ -85,14 +125,22 @@ describe("RecommendationRequestTable tests", () => {
       expect(header).toBeInTheDocument();
     });
 
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("1");
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("2");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent(
+      "1",
+    );
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent(
+      "2",
+    );
 
-    const editButton = screen.getByTestId(`${testId}-cell-row-0-col-Edit-button`);
+    const editButton = screen.getByTestId(
+      `${testId}-cell-row-0-col-Edit-button`,
+    );
     expect(editButton).toBeInTheDocument();
     expect(editButton).toHaveClass("btn-primary");
 
-    const deleteButton = screen.getByTestId(`${testId}-cell-row-0-col-Delete-button`);
+    const deleteButton = screen.getByTestId(
+      `${testId}-cell-row-0-col-Delete-button`,
+    );
     expect(deleteButton).toBeInTheDocument();
     expect(deleteButton).toHaveClass("btn-danger");
   });
@@ -112,16 +160,22 @@ describe("RecommendationRequestTable tests", () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByTestId(`RecommendationRequestTable-cell-row-0-col-id`)).toHaveTextContent("1");
+      expect(
+        screen.getByTestId(`RecommendationRequestTable-cell-row-0-col-id`),
+      ).toHaveTextContent("1");
     });
 
-    const editButton = screen.getByTestId(`RecommendationRequestTable-cell-row-0-col-Edit-button`);
+    const editButton = screen.getByTestId(
+      `RecommendationRequestTable-cell-row-0-col-Edit-button`,
+    );
     expect(editButton).toBeInTheDocument();
 
     fireEvent.click(editButton);
 
     await waitFor(() =>
-      expect(mockedNavigate).toHaveBeenCalledWith("/recommendationrequest/edit/1"),
+      expect(mockedNavigate).toHaveBeenCalledWith(
+        "/recommendationrequest/edit/1",
+      ),
     );
   });
 
@@ -145,10 +199,14 @@ describe("RecommendationRequestTable tests", () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByTestId(`RecommendationRequestTable-cell-row-0-col-id`)).toHaveTextContent("1");
+      expect(
+        screen.getByTestId(`RecommendationRequestTable-cell-row-0-col-id`),
+      ).toHaveTextContent("1");
     });
 
-    const deleteButton = screen.getByTestId(`RecommendationRequestTable-cell-row-0-col-Delete-button`);
+    const deleteButton = screen.getByTestId(
+      `RecommendationRequestTable-cell-row-0-col-Delete-button`,
+    );
     expect(deleteButton).toBeInTheDocument();
 
     fireEvent.click(deleteButton);
