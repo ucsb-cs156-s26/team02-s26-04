@@ -111,7 +111,7 @@ import org.springframework.web.bind.annotation.RestController;
   @Operation(summary = &quot;Delete an Articles&quot;)
   @PreAuthorize(&quot;hasRole('ROLE_ADMIN')&quot;)
   @DeleteMapping(&quot;&quot;)
-  public Object deleteArticles(@Parameter(name = &quot;id&quot;) @RequestParam Long id) {
+  public Object deleteArticle(@Parameter(name = &quot;id&quot;) @RequestParam Long id) {
 <span class="fc" id="L115">    Articles articles =</span>
         articlesRepository
 <span class="fc" id="L117">            .findById(id)</span>
@@ -131,7 +131,7 @@ import org.springframework.web.bind.annotation.RestController;
   @Operation(summary = &quot;Update a single article&quot;)
   @PreAuthorize(&quot;hasRole('ROLE_ADMIN')&quot;)
   @PutMapping(&quot;&quot;)
-  public Articles updateArticles(
+  public Articles updateArticle(
       @Parameter(name = &quot;id&quot;) @RequestParam Long id, @RequestBody @Valid Articles incoming) {
 
 <span class="fc" id="L137">    Articles articles =</span>
