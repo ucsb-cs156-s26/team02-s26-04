@@ -70,7 +70,9 @@ describe("ArticlesEditPage tests", () => {
 
       await screen.findByText(/Welcome/);
       await screen.findByText("Edit Articles");
-      expect(screen.queryByTestId("ArticleForm-title")).not.toBeInTheDocument();
+      expect(
+        screen.queryByTestId("ArticlesForm-title"),
+      ).not.toBeInTheDocument();
       restoreConsole();
     });
   });
@@ -121,8 +123,8 @@ describe("ArticlesEditPage tests", () => {
         </QueryClientProvider>,
       );
       await screen.findByText(/Welcome/);
-      await screen.findByTestId("ArticleForm-title");
-      expect(screen.getByTestId("ArticleForm-title")).toBeInTheDocument();
+      await screen.findByTestId("ArticlesForm-title");
+      expect(screen.getByTestId("ArticlesForm-title")).toBeInTheDocument();
     });
 
     test("Is populated with the data provided", async () => {
@@ -134,15 +136,15 @@ describe("ArticlesEditPage tests", () => {
         </QueryClientProvider>,
       );
 
-      await screen.findByTestId("ArticleForm-title");
+      await screen.findByTestId("ArticlesForm-title");
 
-      const idField = screen.getByTestId("ArticleForm-id");
-      const titleField = screen.getByTestId("ArticleForm-title");
-      const urlField = screen.getByTestId("ArticleForm-url");
-      const explanationField = screen.getByTestId("ArticleForm-explanation");
-      const emailField = screen.getByTestId("ArticleForm-email");
-      const dateAddedField = screen.getByTestId("ArticleForm-dateAdded");
-      const submitButton = screen.getByTestId("ArticleForm-submit");
+      const idField = screen.getByTestId("ArticlesForm-id");
+      const titleField = screen.getByTestId("ArticlesForm-title");
+      const urlField = screen.getByTestId("ArticlesForm-url");
+      const explanationField = screen.getByTestId("ArticlesForm-explanation");
+      const emailField = screen.getByTestId("ArticlesForm-email");
+      const dateAddedField = screen.getByTestId("ArticlesForm-dateAdded");
+      const submitButton = screen.getByTestId("ArticlesForm-submit");
 
       expect(idField).toHaveValue("17");
       expect(titleField).toHaveValue("Pi Day");
@@ -162,15 +164,15 @@ describe("ArticlesEditPage tests", () => {
         </QueryClientProvider>,
       );
 
-      await screen.findByTestId("ArticleForm-title");
+      await screen.findByTestId("ArticlesForm-title");
 
-      const idField = screen.getByTestId("ArticleForm-id");
-      const titleField = screen.getByTestId("ArticleForm-title");
-      const urlField = screen.getByTestId("ArticleForm-url");
-      const explanationField = screen.getByTestId("ArticleForm-explanation");
-      const emailField = screen.getByTestId("ArticleForm-email");
-      const dateAddedField = screen.getByTestId("ArticleForm-dateAdded");
-      const submitButton = screen.getByTestId("ArticleForm-submit");
+      const idField = screen.getByTestId("ArticlesForm-id");
+      const titleField = screen.getByTestId("ArticlesForm-title");
+      const urlField = screen.getByTestId("ArticlesForm-url");
+      const explanationField = screen.getByTestId("ArticlesForm-explanation");
+      const emailField = screen.getByTestId("ArticlesForm-email");
+      const dateAddedField = screen.getByTestId("ArticlesForm-dateAdded");
+      const submitButton = screen.getByTestId("ArticlesForm-submit");
 
       expect(idField).toHaveValue("17");
       expect(titleField).toHaveValue("Pi Day");
@@ -186,7 +188,7 @@ describe("ArticlesEditPage tests", () => {
         target: { value: "darkside.com/christmas-morning" },
       });
       fireEvent.change(explanationField, {
-        target: { value: "Christmas is the best day" },
+        target: { value: "Christmas Morning is the best day" },
       });
       fireEvent.change(emailField, { target: { value: "user@hotmail.com" } });
       fireEvent.change(dateAddedField, {
@@ -197,7 +199,7 @@ describe("ArticlesEditPage tests", () => {
 
       await waitFor(() => expect(mockToast).toBeCalled());
       expect(mockToast).toBeCalledWith(
-        "Article Updated - id: 17 name: Christmas Morning",
+        "Article Updated - id: 17 title: Christmas Morning",
       );
       expect(mockNavigate).toBeCalledWith({ to: "/articles" });
 
@@ -205,10 +207,9 @@ describe("ArticlesEditPage tests", () => {
       expect(axiosMock.history.put[0].params).toEqual({ id: 17 });
       expect(axiosMock.history.put[0].data).toBe(
         JSON.stringify({
-          id: "17",
           title: "Christmas Morning",
           url: "darkside.com/christmas-morning",
-          explanation: "Christmas Morning is the best day",
+          explanation: "Christmas morning is the best day",
           email: "user@hotmail.com",
           dateAdded: "2022-12-25T08:00",
         }),
