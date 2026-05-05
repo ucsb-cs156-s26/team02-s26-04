@@ -56,14 +56,21 @@ describe("RecommendationRequestForm tests", () => {
     );
     const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
 
-    fireEvent.change(requesterEmailField, { target: { value: "bad-input" } });
-    fireEvent.change(professorEmailField, { target: { value: "bad-input" } });
+    fireEvent.change(requesterEmailField, {
+      target: { value: "valid@test.com extra" },
+    });
+    fireEvent.change(professorEmailField, {
+      target: { value: "extra valid@test.com" },
+    });
     fireEvent.change(dateRequestedField, { target: { value: "bad-input" } });
     fireEvent.click(submitButton);
 
     await screen.findByText(/Requester Email must be a valid email address./);
     expect(
       screen.getByText(/Requester Email must be a valid email address./),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/Professor Email must be a valid email address./),
     ).toBeInTheDocument();
   });
 
