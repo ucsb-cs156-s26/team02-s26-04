@@ -9,9 +9,7 @@ export default function UCSBDiningCommonsMenuItemEditPage({
 }) {
   let { id } = useParams();
 
-  const {
-    data: UCSBDiningCommonsMenuItem,
-  } = useBackend(
+  const { data: UCSBDiningCommonsMenuItem } = useBackend(
     [`/api/ucsbdiningcommonsmenuitem?id=${id}`],
     {
       method: "GET",
@@ -37,11 +35,9 @@ export default function UCSBDiningCommonsMenuItemEditPage({
     );
   };
 
-  const mutation = useBackendMutation(
-    objectToAxiosPutParams,
-    { onSuccess },
-    [`/api/ucsbdiningcommonsmenuitem?id=${id}`],
-  );
+  const mutation = useBackendMutation(objectToAxiosPutParams, { onSuccess }, [
+    `/api/ucsbdiningcommonsmenuitem?id=${id}`,
+  ]);
 
   const { isSuccess } = mutation;
 
