@@ -23,11 +23,9 @@ export default function UCSBDiningCommonsMenuItemCreatePage({
     );
   };
 
-  const mutation = useBackendMutation(
-    objectToAxiosParams,
-    { onSuccess },
-    ["/api/ucsbdiningcommonsmenuitem/all"], 
-  );
+  const mutation = useBackendMutation(objectToAxiosParams, { onSuccess }, [
+    "/api/ucsbdiningcommonsmenuitem/all",
+  ]);
 
   const { isSuccess } = mutation;
 
