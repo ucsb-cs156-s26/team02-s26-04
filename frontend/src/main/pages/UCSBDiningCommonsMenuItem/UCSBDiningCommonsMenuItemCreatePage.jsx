@@ -26,8 +26,7 @@ export default function UCSBDiningCommonsMenuItemCreatePage({
   const mutation = useBackendMutation(
     objectToAxiosParams,
     { onSuccess },
-    // Stryker disable next-line all : hard to set up test for caching
-    ["/api/ucsbdiningcommonsmenuitem/all"], // mutation makes this key stale so that pages relying on it reload
+    ["/api/ucsbdiningcommonsmenuitem/all"], 
   );
 
   const { isSuccess } = mutation;
