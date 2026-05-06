@@ -37,11 +37,12 @@ export default function UCSBDiningCommonsMenuItemCreatePage({
     return <Navigate to="/ucsbdiningcommonsmenuitem" />;
   }
 
+export default function UCSBDiningCommonsMenuItemCreatePage() {
+  // Stryker disable all : placeholder for future implementation
   return (
     <BasicLayout>
       <div className="pt-2">
-        <h1>Create New UCSBDiningCommonsMenuItem</h1>
-        <UCSBDiningCommonsMenuItemForm submitAction={onSubmit} />
+        <h1>Create page not yet implemented</h1>
       </div>
     </BasicLayout>
   );
