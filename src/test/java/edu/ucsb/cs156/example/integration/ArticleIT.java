@@ -66,7 +66,7 @@ public class ArticleIT {
     MvcResult response =
         mockMvc
             .perform(
-                post("/api/Articles/post")
+                post("/api/articles/post")
                     .param("title", "First Article")
                     .param("url", "dailynexus.com")
                     .param("explanation", "This is the first article")
