@@ -7,25 +7,28 @@ import { toast } from "react-toastify";
 export default function UCSBDiningCommonsMenuItemCreatePage({
   storybook = false,
 }) {
-  const objectToAxiosParams = (menuItem) => ({
+  const objectToAxiosParams = (UCSBDiningCommonsMenuItem) => ({
     url: "/api/ucsbdiningcommonsmenuitem/post",
     method: "POST",
     params: {
-      name: menuItem.name,
-      diningCommonsCode: menuItem.diningCommonsCode,
-      station: menuItem.station,
+      name: UCSBDiningCommonsMenuItem.name,
+      diningCommonsCode: UCSBDiningCommonsMenuItem.diningCommonsCode,
+      station: UCSBDiningCommonsMenuItem.station,
     },
   });
 
-  const onSuccess = (menuItem) => {
+  const onSuccess = (UCSBDiningCommonsMenuItem) => {
     toast(
-      `New Dining Commons Menu Item Created - id: ${menuItem.id} name: ${menuItem.name}`,
+      `New Dining Commons Menu Item Created - id: ${UCSBDiningCommonsMenuItem.id} name: ${UCSBDiningCommonsMenuItem.name}`,
     );
   };
 
-  const mutation = useBackendMutation(objectToAxiosParams, { onSuccess }, [
-    "/api/ucsbdiningcommonsmenuitem/all",
-  ]);
+  const mutation = useBackendMutation(
+    objectToAxiosParams,
+    { onSuccess },
+    // Stryker disable next-line all : hard to set up test for caching
+    ["/api/ucsbdiningcommonsmenuitem/all"], // mutation makes this key stale so that pages relying on it reload
+  );
 
   const { isSuccess } = mutation;
 

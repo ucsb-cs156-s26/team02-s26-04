@@ -10,7 +10,6 @@ import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
 
 const mockToast = vi.fn();
-
 vi.mock("react-toastify", async (importOriginal) => {
   const originalModule = await importOriginal();
   return {
@@ -20,7 +19,6 @@ vi.mock("react-toastify", async (importOriginal) => {
 });
 
 const mockNavigate = vi.fn();
-
 vi.mock("react-router", async (importOriginal) => {
   const originalModule = await importOriginal();
   return {
@@ -39,18 +37,15 @@ describe("UCSBDiningCommonsMenuItemCreatePage tests", () => {
     vi.clearAllMocks();
     axiosMock.reset();
     axiosMock.resetHistory();
-
     axiosMock
       .onGet("/api/currentUser")
       .reply(200, apiCurrentUserFixtures.userOnly);
-
     axiosMock
       .onGet("/api/systemInfo")
       .reply(200, systemInfoFixtures.showingNeither);
   });
 
   const queryClient = new QueryClient();
-
   test("renders without crashing", async () => {
     render(
       <QueryClientProvider client={queryClient}>
@@ -67,7 +62,6 @@ describe("UCSBDiningCommonsMenuItemCreatePage tests", () => {
 
   test("on submit, makes request to backend, and redirects to /ucsbdiningcommonsmenuitem", async () => {
     const queryClient = new QueryClient();
-
     const UCSBDiningCommonsMenuItem = {
       id: 3,
       name: "Pesto Pasta",
@@ -92,21 +86,22 @@ describe("UCSBDiningCommonsMenuItemCreatePage tests", () => {
     });
 
     const nameInput = screen.getByLabelText("Name");
+    expect(nameInput).toBeInTheDocument();
+
     const diningCommonsCode = screen.getByLabelText("Dining Commons Code");
+    expect(diningCommonsCode).toBeInTheDocument();
+
     const station = screen.getByLabelText("Station");
+    expect(station).toBeInTheDocument();
+
     const createButton = screen.getByText("Create");
+    expect(createButton).toBeInTheDocument();
 
-    fireEvent.change(nameInput, {
-      target: { value: "Pesto Pasta" },
-    });
-
+    fireEvent.change(nameInput, { target: { value: "Pesto Pasta" } });
     fireEvent.change(diningCommonsCode, {
       target: { value: "Ortega" },
     });
-
-    fireEvent.change(station, {
-      target: { value: "Entree" },
-    });
+    fireEvent.change(station, { target: { value: "Entree" } });
 
     fireEvent.click(createButton);
 
@@ -118,12 +113,10 @@ describe("UCSBDiningCommonsMenuItemCreatePage tests", () => {
       station: "Entree",
     });
 
+    // assert - check that the toast was called with the expected message
     expect(mockToast).toBeCalledWith(
       "New Dining Commons Menu Item Created - id: 3 name: Pesto Pasta",
     );
-
-    expect(mockNavigate).toBeCalledWith({
-      to: "/ucsbdiningcommonsmenuitem",
-    });
+    expect(mockNavigate).toBeCalledWith({ to: "/ucsbdiningcommonsmenuitem" });
   });
 });

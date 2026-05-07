@@ -1,6 +1,7 @@
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
-import { useParams, Navigate } from "react-router";
+import { useParams } from "react-router";
 import UCSBDiningCommonsMenuItemForm from "main/components/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemForm";
+import { Navigate } from "react-router";
 import { useBackend, useBackendMutation } from "main/utils/useBackend";
 import { toast } from "react-toastify";
 
@@ -9,19 +10,29 @@ export default function UCSBDiningCommonsMenuItemEditPage({
 }) {
   let { id } = useParams();
 
-  const { data: UCSBDiningCommonsMenuItem } = useBackend(
+  const {
+    data: UCSBDiningCommonsMenuItem,
+    _error,
+    _status,
+  } = useBackend(
+    // Stryker disable next-line all : don't test internal caching of React Query
     [`/api/ucsbdiningcommonsmenuitem?id=${id}`],
     {
+      // Stryker disable next-line all : GET is the default, so mutating this to "" doesn't introduce a bug
       method: "GET",
       url: `/api/ucsbdiningcommonsmenuitem`,
-      params: { id },
+      params: {
+        id,
+      },
     },
   );
 
   const objectToAxiosPutParams = (menuItem) => ({
     url: "/api/ucsbdiningcommonsmenuitem",
     method: "PUT",
-    params: { id: menuItem.id },
+    params: {
+      id: menuItem.id,
+    },
     data: {
       name: menuItem.name,
       station: menuItem.station,
@@ -35,9 +46,12 @@ export default function UCSBDiningCommonsMenuItemEditPage({
     );
   };
 
-  const mutation = useBackendMutation(objectToAxiosPutParams, { onSuccess }, [
-    `/api/ucsbdiningcommonsmenuitem?id=${id}`,
-  ]);
+  const mutation = useBackendMutation(
+    objectToAxiosPutParams,
+    { onSuccess },
+    // Stryker disable next-line all : hard to set up test for caching
+    [`/api/ucsbdiningcommonsmenuitem?id=${id}`],
+  );
 
   const { isSuccess } = mutation;
 
@@ -53,11 +67,10 @@ export default function UCSBDiningCommonsMenuItemEditPage({
     <BasicLayout>
       <div className="pt-2">
         <h1>Edit UCSBDiningCommonsMenuItem</h1>
-
         {UCSBDiningCommonsMenuItem && (
           <UCSBDiningCommonsMenuItemForm
             submitAction={onSubmit}
-            buttonLabel="Update"
+            buttonLabel={"Update"}
             initialContents={UCSBDiningCommonsMenuItem}
           />
         )}

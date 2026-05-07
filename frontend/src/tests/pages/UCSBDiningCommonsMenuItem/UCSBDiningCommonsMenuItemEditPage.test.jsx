@@ -34,7 +34,6 @@ vi.mock("react-router", async (importOriginal) => {
 });
 
 let axiosMock;
-
 describe("UCSBDiningCommonsMenuItemEditPage tests", () => {
   describe("when the backend doesn't return data", () => {
     beforeEach(() => {
@@ -60,7 +59,6 @@ describe("UCSBDiningCommonsMenuItemEditPage tests", () => {
     });
 
     const queryClient = new QueryClient();
-
     test("renders header but table is not present", async () => {
       const restoreConsole = mockConsole();
 
@@ -71,13 +69,10 @@ describe("UCSBDiningCommonsMenuItemEditPage tests", () => {
           </MemoryRouter>
         </QueryClientProvider>,
       );
-
       await screen.findByText("Edit UCSBDiningCommonsMenuItem");
-
       expect(
         screen.queryByTestId("UCSBDiningCommonsMenuItem-name"),
       ).not.toBeInTheDocument();
-
       restoreConsole();
     });
   });
@@ -163,20 +158,16 @@ describe("UCSBDiningCommonsMenuItemEditPage tests", () => {
       fireEvent.change(stationField, {
         target: { value: "Side" },
       });
-
       fireEvent.click(submitButton);
 
       await waitFor(() => expect(mockToast).toBeCalled());
-
       expect(mockToast).toBeCalledWith(
         "UCSBDiningCommonsMenuItem Updated - id: 17 name: Salad",
       );
 
-      expect(mockNavigate).toBeCalledWith({
-        to: "/ucsbdiningcommonsmenuitem",
-      });
+      expect(mockNavigate).toBeCalledWith({ to: "/ucsbdiningcommonsmenuitem" });
 
-      expect(axiosMock.history.put.length).toBe(1);
+      expect(axiosMock.history.put.length).toBe(1); // times called
       expect(axiosMock.history.put[0].params).toEqual({ id: 17 });
 
       expect(JSON.parse(axiosMock.history.put[0].data)).toEqual({
@@ -215,6 +206,7 @@ describe("UCSBDiningCommonsMenuItemEditPage tests", () => {
       expect(nameField).toHaveValue("Pesto Pasta");
       expect(diningCommonsCodeField).toHaveValue("Ortega");
       expect(stationField).toHaveValue("Entree");
+      expect(submitButton).toBeInTheDocument();
 
       fireEvent.change(nameField, {
         target: { value: "Salad" },
@@ -222,21 +214,15 @@ describe("UCSBDiningCommonsMenuItemEditPage tests", () => {
       fireEvent.change(diningCommonsCodeField, {
         target: { value: "Portola" },
       });
-      fireEvent.change(stationField, {
-        target: { value: "Side" },
-      });
+      fireEvent.change(stationField, { target: { value: "Side" } });
 
       fireEvent.click(submitButton);
 
       await waitFor(() => expect(mockToast).toBeCalled());
-
       expect(mockToast).toBeCalledWith(
         "UCSBDiningCommonsMenuItem Updated - id: 17 name: Salad",
       );
-
-      expect(mockNavigate).toBeCalledWith({
-        to: "/ucsbdiningcommonsmenuitem",
-      });
+      expect(mockNavigate).toBeCalledWith({ to: "/ucsbdiningcommonsmenuitem" });
     });
   });
 });
