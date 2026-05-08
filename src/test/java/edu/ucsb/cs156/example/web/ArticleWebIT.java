@@ -22,14 +22,14 @@ public class ArticleWebIT extends WebTestCase {
 
     page.getByText("Articles").click();
 
-    page.getByText("Create Article").click();
+    page.getByText("Create New Article").click();
     assertThat(page.getByText("Create New Article")).isVisible();
 
     page.getByTestId("ArticlesForm-title").fill("Test Article");
     page.getByTestId("ArticlesForm-url").fill("https://dailynews.com");
     page.getByTestId("ArticlesForm-explanation").fill("This is a test article");
     page.getByTestId("ArticlesForm-email").fill("user@example.com");
-    page.getByTestId("ArticlesForm-dateAdded").fill("2023-01-03T00:00:00");
+    page.getByTestId("ArticlesForm-dateAdded").fill("2023-01-03T00:00");
 
     page.getByTestId("ArticlesForm-submit").click();
 
@@ -46,7 +46,7 @@ public class ArticleWebIT extends WebTestCase {
 
     page.getByText("Articles").click();
 
-    assertThat(page.getByText("Create Article")).not().isVisible();
+    assertThat(page.getByText("Create New Article")).not().isVisible();
     assertThat(page.getByTestId("ArticlesTable-cell-row-0-col-title")).not().isVisible();
   }
 }
