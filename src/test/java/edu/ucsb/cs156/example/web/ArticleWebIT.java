@@ -22,7 +22,7 @@ public class ArticleWebIT extends WebTestCase {
 
     page.getByText("Articles").click();
 
-    page.getByText("Create New Article").click();
+    page.getByText("Create New Articles").click();
     assertThat(page.getByText("Create New Articles")).isVisible();
 
     page.getByTestId("ArticlesForm-title").fill("Test Article");
@@ -46,7 +46,7 @@ public class ArticleWebIT extends WebTestCase {
 
     page.getByText("Articles").click();
 
-    assertThat(page.getByText("Create Articles")).not().isVisible();
+    assertThat(page.getByText("Create New Articles")).not().isVisible();
     assertThat(page.getByTestId("ArticlesTable-cell-row-0-col-title")).not().isVisible();
   }
 }
