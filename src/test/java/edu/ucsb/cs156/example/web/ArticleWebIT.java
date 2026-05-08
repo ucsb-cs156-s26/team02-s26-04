@@ -23,7 +23,7 @@ public class ArticleWebIT extends WebTestCase {
     page.getByText("Articles").click();
 
     page.getByText("Create Article").click();
-    assertThat(page.getByText("Create Article")).isVisible();
+    assertThat(page.getByText("Create New Article")).isVisible();
 
     page.getByTestId("ArticlesForm-title").fill("Test Article");
     page.getByTestId("ArticlesForm-url").fill("https://dailynews.com");
