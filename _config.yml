@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-s26/team02-s26-04
 owner: ucsb-cs156-s26
 repo_name: team02-s26-04
-pull_requests: []
+pull_requests: [{"author":{"id":"U_kgDOCeRyWA","is_bot":false,"login":"Ertan10","name":"Ertan"},"headRefName":"team03-ertan10-1","number":141,"title":"Add integration tests for RecommendationRequest","url":"https://github.com/ucsb-cs156-s26/team02-s26-04/pull/141"}]
